@@ -4,7 +4,7 @@
    Bir metni değiştirmek için: Türkçe → index.html, İngilizce → aşağıdaki "en" bölümü. */
 window.MT_I18N = {
   en: {
-    'meta.title': 'MUSTECH | Smart Agriculture Technologies – Sensors, Irrigation & Farm Management',
+    'meta.title': 'Mustech Agro | MUSTECH Smart Agriculture Technologies – Kayseri, Türkiye',
     'meta.desc': 'MUSTECH boosts farm yields and cuts costs with smart irrigation, soil sensors, drone imaging, weather stations and farm management software. Installation, training and technical support.',
     'skip': 'Skip to content',
     'brand.tag': 'SMART AGRO',
@@ -44,7 +44,7 @@ window.MT_I18N = {
     'about.badge': '<b>Hardware + Software + Field</b><br>under one roof',
     'about.label': 'About Us',
     'about.title': 'From soil to <em>data</em>, from data to the future',
-    'about.lead': 'MUSTECH was founded to lead the digital transformation of Turkish agriculture.',
+    'about.lead': 'Mustech Agro (MUSTECH) was founded to lead the digital transformation of Turkish agriculture.',
     'about.p': 'Our integrated solutions bring hardware, software and on-site support together under one roof, helping farmers base their decisions on data.',
     'about.c1t': 'Smart hardware',
     'about.c1d': 'Sensors, stations and imaging modules working in the field.',
@@ -136,7 +136,7 @@ window.MT_I18N = {
     't.support': 'Technical support',
     't.partner': 'Partnership',
 
-    'footer.about': 'Leading the digital transformation of agriculture with sensors, data analytics and field support.',
+    'footer.about': 'Mustech Agro: leading the digital transformation of agriculture with sensors, data analytics and field support.',
     'footer.corp': 'Company',
     'footer.rights': 'All rights reserved.',
     'footer.top': 'Back to top',
