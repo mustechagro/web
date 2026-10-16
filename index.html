@@ -30,8 +30,9 @@
     (function () {
       var d = document.documentElement, t, l;
       try { t = localStorage.getItem('mt-theme'); l = localStorage.getItem('mt-lang'); } catch (e) {}
-      if (!t) t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      if (!l) l = (navigator.language || 'tr').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en';
+      // Varsayılan: açık tema ve Türkçe (ziyaretçi düğmeyle değiştirirse seçimi hatırlanır)
+      if (t !== 'dark') t = 'light';
+      if (l !== 'en') l = 'tr';
       d.setAttribute('data-theme', t); d.setAttribute('lang', l); d.classList.add('js');
     })();
   </script>
