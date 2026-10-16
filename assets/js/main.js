@@ -1,129 +1,192 @@
-/* MUSTECH – site davranışları */
+/* MUSTECH – site davranışları: tema, dil, menü, form */
 (function () {
   'use strict';
 
-  // İletişim formunun gönderileceği adres (değiştirmek için yalnızca burayı güncelleyin)
-  var CONTACT_EMAIL = 'info@mustech.com.tr';
+  // İletişim formunun gideceği adres (değiştirmek için yalnızca burayı güncelleyin)
+  var CONTACT_EMAIL = 'mustechagro@gmail.com';
 
+  var root = document.documentElement;
   var body = document.body;
   var navbar = document.getElementById('navbar');
   var menuBtn = document.getElementById('menuBtn');
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var DICT = window.MT_I18N || { en: {}, js: { tr: {}, en: {} } };
 
-  /* ---- Navbar: kaydırınca arka plan ---- */
+  function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function emit(name, detail) { document.dispatchEvent(new CustomEvent(name, { detail: detail })); }
+
+  /* ================= DİL ================= */
+  var TR = {}; // Türkçe metinler sayfadan okunur
+  var attrs = [['data-i18n', 'text'], ['data-i18n-html', 'html'], ['data-i18n-ph', 'ph'], ['data-i18n-aria', 'aria']];
+  attrs.forEach(function (a) {
+    document.querySelectorAll('[' + a[0] + ']').forEach(function (el) {
+      var key = el.getAttribute(a[0]);
+      if (TR[key] !== undefined) return;
+      TR[key] = a[1] === 'text' ? el.textContent : a[1] === 'html' ? el.innerHTML :
+                a[1] === 'ph' ? el.getAttribute('placeholder') : el.getAttribute('aria-label');
+    });
+  });
+  TR['meta.title'] = document.title;
+  var metaDesc = document.querySelector('meta[name="description"]');
+  TR['meta.desc'] = metaDesc.getAttribute('content');
+
+  function t(key) {
+    var l = root.lang === 'en' ? 'en' : 'tr';
+    var d = l === 'en' ? DICT.en : TR;
+    return d[key] !== undefined ? d[key] : TR[key];
+  }
+  function tjs(key) { return (DICT.js[root.lang === 'en' ? 'en' : 'tr'] || {})[key] || ''; }
+
+  function applyLang(lang) {
+    root.lang = lang;
+    attrs.forEach(function (a) {
+      document.querySelectorAll('[' + a[0] + ']').forEach(function (el) {
+        var v = t(el.getAttribute(a[0])); if (v === undefined) return;
+        if (a[1] === 'text') el.textContent = v;
+        else if (a[1] === 'html') el.innerHTML = v;
+        else if (a[1] === 'ph') el.setAttribute('placeholder', v);
+        else el.setAttribute('aria-label', v);
+      });
+    });
+    document.title = t('meta.title');
+    metaDesc.setAttribute('content', t('meta.desc'));
+    document.getElementById('langLabel').textContent = lang === 'en' ? 'TR' : 'EN';
+    document.getElementById('langBtn').setAttribute('aria-label', tjs('langSwitch'));
+    menuBtn.setAttribute('aria-label', tjs('menu'));
+    updateThemeLabel();
+    emit('mt:lang', lang);
+  }
+  document.getElementById('langBtn').addEventListener('click', function () {
+    var next = root.lang === 'en' ? 'tr' : 'en';
+    store('mt-lang', next); applyLang(next);
+  });
+
+  /* ================= TEMA ================= */
+  var themeBtn = document.getElementById('themeBtn');
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+  function updateThemeLabel() {
+    themeBtn.setAttribute('aria-label', tjs(root.getAttribute('data-theme') === 'dark' ? 'themeToLight' : 'themeToDark'));
+  }
+  function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    themeMeta.setAttribute('content', theme === 'dark' ? '#08120c' : '#0e2416');
+    updateThemeLabel();
+    emit('mt:theme', theme);
+  }
+  themeBtn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    store('mt-theme', next); applyTheme(next);
+  });
+
+  window.MT = { t: t, tjs: tjs, lang: function () { return root.lang === 'en' ? 'en' : 'tr'; },
+                theme: function () { return root.getAttribute('data-theme'); }, email: CONTACT_EMAIL };
+
+  /* ================= MENÜ ================= */
   function onScroll() { navbar.classList.toggle('scrolled', window.scrollY > 40); }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  /* ---- Mobil menü ---- */
-  function closeMenu() {
-    body.classList.remove('nav-open');
-    menuBtn.setAttribute('aria-expanded', 'false');
-    menuBtn.setAttribute('aria-label', 'Menüyü aç');
-  }
+  function closeMenu() { body.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded', 'false'); }
   menuBtn.addEventListener('click', function () {
     var open = body.classList.toggle('nav-open');
     menuBtn.setAttribute('aria-expanded', String(open));
-    menuBtn.setAttribute('aria-label', open ? 'Menüyü kapat' : 'Menüyü aç');
   });
   document.querySelectorAll('.nav-links a').forEach(function (a) { a.addEventListener('click', closeMenu); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeMenu(); closeDropdown(); } });
 
-  /* ---- Ürünler açılır menüsü (dokunmatik + klavye) ---- */
   var dd = document.querySelector('.dropdown');
   var ddBtn = dd.querySelector('.dd-toggle');
   function closeDropdown() { dd.classList.remove('open'); ddBtn.setAttribute('aria-expanded', 'false'); }
   ddBtn.addEventListener('click', function (e) {
     e.stopPropagation();
-    var open = dd.classList.toggle('open');
-    ddBtn.setAttribute('aria-expanded', String(open));
+    ddBtn.setAttribute('aria-expanded', String(dd.classList.toggle('open')));
   });
   document.addEventListener('click', function (e) { if (!dd.contains(e.target)) closeDropdown(); });
-  dd.querySelectorAll('.dropdown-menu a').forEach(function (a) { a.addEventListener('click', closeDropdown); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeMenu(); closeDropdown(); } });
 
-  /* ---- Aktif menü bağlantısı ---- */
   var links = document.querySelectorAll('.nav-links > li > a[href^="#"]');
   if ('IntersectionObserver' in window) {
     var secObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        links.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id); });
+        if (en.isIntersecting) links.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id); });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['about', 'process', 'products', 'services', 'contact', 'hero'].forEach(function (id) {
+    ['hero', 'about', 'process', 'products', 'services', 'contact'].forEach(function (id) {
       var el = document.getElementById(id); if (el) secObs.observe(el);
     });
   }
 
-  /* ---- Kaydırınca beliren öğeler ---- */
+  /* ================= KAYDIRINCA BELİRME ================= */
   var reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && !reduceMotion) {
     var revObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('in'); revObs.unobserve(en.target); }
-      });
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); revObs.unobserve(en.target); } });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(function (el) { revObs.observe(el); });
-  } else {
-    reveals.forEach(function (el) { el.classList.add('in'); });
-  }
+  } else reveals.forEach(function (el) { el.classList.add('in'); });
 
-  /* ---- Hero videosu: yalnızca geniş ekran + hızlı bağlantı ---- */
-  var video = document.getElementById('heroVideo');
-  var conn = navigator.connection || {};
-  var slow = conn.saveData || /(^|-)2g$|^3g$/.test(conn.effectiveType || '');
-  if (video && !reduceMotion && !slow && window.innerWidth >= 900) {
-    var srcs = (video.getAttribute('data-src') || '').split('|').filter(Boolean);
-    srcs.forEach(function (s) {
-      var el = document.createElement('source'); el.src = s; el.type = 'video/mp4'; video.appendChild(el);
-    });
-    video.addEventListener('playing', function () { video.classList.add('ready'); }, { once: true });
-    video.load();
-    var p = video.play(); if (p && p.catch) p.catch(function () {});
-  }
-
-  /* ---- Örnek panelde canlı değer animasyonu ---- */
+  /* ================= ÖRNEK PANEL ================= */
   if (!reduceMotion) {
-    var moist = document.querySelector('[data-live="moist"]');
-    var temp = document.querySelector('[data-live="temp"]');
-    var ph = document.querySelector('[data-live="ph"]');
-    var bMoist = document.querySelector('[data-bar="moist"]');
-    var bTemp = document.querySelector('[data-bar="temp"]');
-    var m = 34, t = 18.6, h = 6.8;
-    function jitter(v, d, min, max) { return Math.min(max, Math.max(min, v + (Math.random() - 0.5) * d)); }
+    var q = function (s) { return document.querySelector(s); };
+    var mEl = q('[data-live="moist"]'), tEl = q('[data-live="temp"]'), pEl = q('[data-live="ph"]');
+    var bM = q('[data-bar="moist"]'), bT = q('[data-bar="temp"]');
+    var m = 34, tt = 18.6, h = 6.8;
+    var j = function (v, d, a, b) { return Math.min(b, Math.max(a, v + (Math.random() - 0.5) * d)); };
     setInterval(function () {
       if (document.hidden) return;
-      m = jitter(m, 1.6, 30, 38); t = jitter(t, 0.4, 17.5, 20); h = jitter(h, 0.06, 6.6, 7.0);
-      moist.textContent = Math.round(m); temp.textContent = t.toFixed(1); ph.textContent = h.toFixed(1);
-      bMoist.style.width = Math.round(m) + '%'; bTemp.style.width = Math.round(t / 35 * 100) + '%';
+      m = j(m, 1.6, 30, 38); tt = j(tt, 0.4, 17.5, 20); h = j(h, 0.06, 6.6, 7.0);
+      mEl.textContent = Math.round(m); tEl.textContent = tt.toFixed(1); pEl.textContent = h.toFixed(1);
+      bM.style.width = Math.round(m) + '%'; bT.style.width = Math.round(tt / 35 * 100) + '%';
     }, 2600);
   }
 
-  /* ---- Ürün kartından "Bilgi alın" → konu otomatik seçilsin ---- */
+  /* ================= İLETİŞİM FORMU ================= */
   var topic = document.getElementById('f-topic');
   document.querySelectorAll('[data-product]').forEach(function (a) {
     a.addEventListener('click', function () { topic.value = a.getAttribute('data-product'); });
   });
+  window.MT.setTopic = function (v) { topic.value = v; };
 
-  /* ---- İletişim formu: e-posta uygulamasında hazır mesaj açar ---- */
   var form = document.getElementById('contactForm');
   var status = document.getElementById('formStatus');
+  var btn = document.getElementById('formBtn');
+  function setStatus(msg, kind) { status.textContent = msg; status.className = 'form-status' + (kind ? ' ' + kind : ''); }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var f = form.elements;
-    var name = f.name.value.trim(), email = f.email.value.trim(), msg = f.message.value.trim();
-    if (!name || !msg || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      status.style.color = '#ffb4a8';
-      status.textContent = 'Lütfen ad, geçerli bir e-posta ve mesaj alanlarını doldurun.';
-      return;
-    }
-    var subject = 'Web sitesi: ' + f.topic.value + ' – ' + name;
-    var text = msg + '\n\n—\nAd Soyad: ' + name + '\nE-posta: ' + email + (f.phone.value.trim() ? '\nTelefon: ' + f.phone.value.trim() : '');
-    window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
-    status.style.color = '';
-    status.textContent = 'E-posta uygulamanız açılıyor. Açılmazsa bize ' + CONTACT_EMAIL + ' adresinden yazabilirsiniz.';
+    var data = {
+      name: f.name.value.trim(), email: f.email.value.trim(), phone: f.phone.value.trim(),
+      topic: f.topic.value, message: f.message.value.trim()
+    };
+    if (f._honey.value) return; // spam botu
+    if (!data.name || !data.message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) { setStatus(tjs('invalid'), 'err'); return; }
+
+    var subject = 'Web sitesi: ' + data.topic + ' – ' + data.name;
+    btn.disabled = true; setStatus(tjs('sending'));
+
+    fetch('https://formsubmit.co/ajax/' + CONTACT_EMAIL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        'Ad Soyad': data.name, 'E-posta': data.email, 'Telefon': data.phone || '-', 'Konu': data.topic,
+        'Mesaj': data.message, 'Dil': root.lang, _replyto: data.email, _subject: subject, _template: 'table', _captcha: 'false'
+      })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        if (String(res.success) !== 'true') throw new Error(res.message || 'failed');
+        setStatus(tjs('ok'), 'ok'); form.reset();
+      })
+      .catch(function () {
+        setStatus(tjs('fail'), 'err');
+        var text = data.message + '\n\n—\n' + data.name + '\n' + data.email + (data.phone ? '\n' + data.phone : '');
+        window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
+      })
+      .then(function () { btn.disabled = false; });
   });
 
-  /* ---- Yıl ---- */
-  var y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+  /* ================= BAŞLAT ================= */
+  document.getElementById('year').textContent = new Date().getFullYear();
+  applyTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+  applyLang(root.lang === 'en' ? 'en' : 'tr');
 })();

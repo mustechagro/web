@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MUSTECH | Akıllı Tarım Teknolojileri – Sensör, Sulama ve Tarla Yönetimi</title>
   <meta name="description" content="MUSTECH; akıllı sulama, toprak analiz sensörleri, drone görüntüleme, hava durumu istasyonu ve tarla yönetim yazılımıyla çiftçilerin verimini artırır, maliyetini düşürür. Kurulum, eğitim ve teknik destek.">
-  <meta name="keywords" content="akıllı tarım, hassas tarım, akıllı sulama, toprak sensörü, tarım drone, tarla yönetim yazılımı, gübre optimizasyonu, Kayseri">
   <link rel="canonical" href="https://mustechagro.com.tr/">
-  <meta name="theme-color" content="#062a19">
-  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0e2416">
+  <meta name="color-scheme" content="light dark">
 
-  <!-- Sosyal medya paylaşım kartı -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
   <meta property="og:site_name" content="MUSTECH">
   <meta property="og:title" content="MUSTECH | Akıllı Tarım Teknolojileri">
   <meta property="og:description" content="Sensörler, veri analitiği ve saha desteğiyle tarımda verimi artıran bütünleşik çözümler.">
@@ -26,13 +25,24 @@
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="assets/css/style.css?v=2">
-  <link rel="preload" as="image" href="assets/img/logo.png">
-  <script>document.documentElement.classList.add('js');</script>
-  <script src="assets/js/main.js?v=2" defer></script>
+  <!-- Tema ve dil, sayfa çizilmeden önce seçilir (yanıp sönmeyi önler) -->
+  <script>
+    (function () {
+      var d = document.documentElement, t, l;
+      try { t = localStorage.getItem('mt-theme'); l = localStorage.getItem('mt-lang'); } catch (e) {}
+      if (!t) t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      if (!l) l = (navigator.language || 'tr').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en';
+      d.setAttribute('data-theme', t); d.setAttribute('lang', l); d.classList.add('js');
+    })();
+  </script>
+
+  <link rel="preload" href="assets/fonts/montserrat-latin-wght-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/montserrat-latin-ext-wght-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css?v=3">
+  <script src="assets/js/i18n.js?v=3" defer></script>
+  <script src="assets/js/main.js?v=3" defer></script>
+  <script src="assets/js/wheat.js?v=3" defer></script>
+  <script src="assets/js/bot.js?v=3" defer></script>
 
   <script type="application/ld+json">
   {
@@ -44,14 +54,13 @@
     "logo": "https://mustechagro.com.tr/assets/img/logo-512.png",
     "description": "Akıllı tarım teknolojileri: sensörler, akıllı sulama, drone görüntüleme ve tarla yönetim yazılımı.",
     "address": { "@type": "PostalAddress", "addressLocality": "Kayseri", "addressCountry": "TR" },
-    "email": "info@mustech.com.tr"
+    "email": "mustechagro@gmail.com"
   }
   </script>
 </head>
 <body>
-<a class="skip-link" href="#main">İçeriğe geç</a>
+<a class="skip-link" href="#main" data-i18n="skip">İçeriğe geç</a>
 
-<!-- İkon seti (tek yerde tanımlı, her yerde <use> ile kullanılır) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7S6 9.1 6 13.7a6 6 0 0 0 12 0C18 9.1 12 2.7 12 2.7z"/><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"/></symbol>
@@ -72,38 +81,49 @@
     <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
     <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></symbol>
     <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01" stroke-width="3"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></symbol>
   </defs>
 </svg>
 
 <!-- ===== NAVBAR ===== -->
 <header id="navbar">
   <div class="wrap">
-    <a href="#hero" class="brand" aria-label="MUSTECH ana sayfa">
-      <span class="brand-mark"><img src="assets/img/logo.png" width="40" height="40" alt=""></span>
-      <span class="brand-name">MUS<span>TECH</span><small>AKILLI TARIM</small></span>
+    <a href="#hero" class="brand" aria-label="MUSTECH">
+      <img src="assets/img/logo.png" width="48" height="48" alt="">
+      <span class="brand-name">MUS<span>TECH</span><small data-i18n="brand.tag">AKILLI TARIM</small></span>
     </a>
 
-    <button class="menu-btn" id="menuBtn" aria-label="Menüyü aç" aria-expanded="false" aria-controls="navLinks"><span></span></button>
-
-    <nav aria-label="Ana menü">
+    <nav aria-label="Menu">
       <ul class="nav-links" id="navLinks">
-        <li><a href="#about">Hakkımızda</a></li>
+        <li><a href="#about" data-i18n="nav.about">Hakkımızda</a></li>
         <li class="dropdown">
-          <button class="dd-toggle" aria-expanded="false" aria-haspopup="true">Ürünler <svg><use href="#i-chev"/></svg></button>
+          <button class="dd-toggle" aria-expanded="false" aria-haspopup="true"><span data-i18n="nav.products">Ürünler</span> <svg><use href="#i-chev"/></svg></button>
           <div class="dropdown-menu">
-            <a href="#urun-sulama"><span class="dd-ico"><svg><use href="#i-drop"/></svg></span>Akıllı Sulama Sistemi</a>
-            <a href="#urun-toprak"><span class="dd-ico"><svg><use href="#i-sprout"/></svg></span>Toprak Analiz Sensörü</a>
-            <a href="#urun-drone"><span class="dd-ico"><svg><use href="#i-drone"/></svg></span>Drone Görüntüleme Modülü</a>
-            <a href="#urun-yazilim"><span class="dd-ico"><svg><use href="#i-dash"/></svg></span>Tarla Yönetim Yazılımı</a>
-            <a href="#urun-hava"><span class="dd-ico"><svg><use href="#i-cloud"/></svg></span>Hava Durumu İstasyonu</a>
-            <a href="#urun-gubre"><span class="dd-ico"><svg><use href="#i-flask"/></svg></span>Gübre Optimizasyon Platformu</a>
+            <a href="#urun-sulama"><span class="dd-ico"><svg><use href="#i-drop"/></svg></span><span data-i18n="p1.name">Akıllı Sulama Sistemi</span></a>
+            <a href="#urun-toprak"><span class="dd-ico"><svg><use href="#i-sprout"/></svg></span><span data-i18n="p2.name">Toprak Analiz Sensörü</span></a>
+            <a href="#urun-drone"><span class="dd-ico"><svg><use href="#i-drone"/></svg></span><span data-i18n="p3.name">Drone Görüntüleme Modülü</span></a>
+            <a href="#urun-yazilim"><span class="dd-ico"><svg><use href="#i-dash"/></svg></span><span data-i18n="p4.name">Tarla Yönetim Yazılımı</span></a>
+            <a href="#urun-hava"><span class="dd-ico"><svg><use href="#i-cloud"/></svg></span><span data-i18n="p5.name">Hava Durumu İstasyonu</span></a>
+            <a href="#urun-gubre"><span class="dd-ico"><svg><use href="#i-flask"/></svg></span><span data-i18n="p6.name">Gübre Optimizasyon Platformu</span></a>
           </div>
         </li>
-        <li><a href="#process">Nasıl Çalışır</a></li>
-        <li><a href="#services">Hizmetler</a></li>
-        <li><a href="#contact" class="nav-cta">İletişim</a></li>
+        <li><a href="#process" data-i18n="nav.process">Nasıl Çalışır</a></li>
+        <li><a href="#services" data-i18n="nav.services">Hizmetler</a></li>
+        <li><a href="#contact" class="nav-cta" data-i18n="nav.contact">İletişim</a></li>
       </ul>
     </nav>
+
+    <div class="tools">
+      <button class="tool-btn lang-btn" id="langBtn" type="button" aria-label="Switch to English"><span id="langLabel">EN</span></button>
+      <button class="tool-btn" id="themeBtn" type="button" aria-label="Koyu temaya geç">
+        <svg class="ico-moon"><use href="#i-moon"/></svg><svg class="ico-sun"><use href="#i-sun"/></svg>
+      </button>
+      <button class="tool-btn menu-btn" id="menuBtn" type="button" aria-label="Menü" aria-expanded="false" aria-controls="navLinks"><span></span></button>
+    </div>
   </div>
 </header>
 
@@ -111,63 +131,59 @@
 
 <!-- ===== HERO ===== -->
 <section id="hero">
-  <!-- Video yalnızca masaüstünde ve hızlı bağlantıda yüklenir (main.js). Kendi videonuzu assets/video/ klasörüne koyup ilk sıraya ekleyebilirsiniz. -->
-  <video class="hero-video" id="heroVideo" muted loop playsinline preload="none" aria-hidden="true"
-         data-src="https://videos.pexels.com/video-files/4894264/4894264-hd_1920_1080_25fps.mp4|https://videos.pexels.com/video-files/4894264/4894264-uhd_2560_1440_25fps.mp4"></video>
-  <div class="hero-shade"></div>
-  <div class="hero-grid"></div>
+  <div class="sky" aria-hidden="true"></div>
+  <canvas id="wheatCanvas" class="wheat-canvas" aria-hidden="true"></canvas>
+  <div class="hero-fade" aria-hidden="true"></div>
 
   <div class="wrap hero-inner">
-    <div>
-      <span class="eyebrow"><i></i>Akıllı Tarım Teknolojileri</span>
-      <h1 class="hero-title">Tarımın geleceğini <span class="grad-text">teknolojiyle</span> şekillendiriyoruz</h1>
-      <p class="hero-sub">Yapay zeka destekli sensörler, veri analitiği ve sahada uygulama desteğiyle çiftçilerin verimini artırıyor, maliyetini düşürüyoruz.</p>
+    <div class="hero-copy">
+      <span class="eyebrow"><i></i><span data-i18n="hero.eyebrow">Akıllı Tarım Teknolojileri</span></span>
+      <h1 class="hero-title" data-i18n-html="hero.title">Tarımın geleceğini <span class="grad-text">teknolojiyle</span> şekillendiriyoruz</h1>
+      <p class="hero-sub" data-i18n="hero.sub">Yapay zeka destekli sensörler, veri analitiği ve sahada uygulama desteğiyle çiftçilerin verimini artırıyor, maliyetini düşürüyoruz.</p>
       <div class="hero-btns">
-        <a href="#products" class="btn btn-primary">Ürünlerimizi Keşfedin <svg><use href="#i-arrow"/></svg></a>
-        <a href="#contact" class="btn btn-ghost">Bizimle İletişime Geçin</a>
+        <a href="#products" class="btn btn-primary"><span data-i18n="hero.cta1">Ürünlerimizi Keşfedin</span> <svg><use href="#i-arrow"/></svg></a>
+        <a href="#contact" class="btn btn-ghost" data-i18n="hero.cta2">Bizimle İletişime Geçin</a>
       </div>
       <ul class="hero-points">
-        <li><svg><use href="#i-check"/></svg>Su ve gübre tasarrufu</li>
-        <li><svg><use href="#i-check"/></svg>Gerçek zamanlı tarla verisi</li>
-        <li><svg><use href="#i-check"/></svg>Kurulumdan desteğe tek ekip</li>
+        <li><svg><use href="#i-check"/></svg><span data-i18n="hero.pt1">Su ve gübre tasarrufu</span></li>
+        <li><svg><use href="#i-check"/></svg><span data-i18n="hero.pt2">Gerçek zamanlı tarla verisi</span></li>
+        <li><svg><use href="#i-check"/></svg><span data-i18n="hero.pt3">Kurulumdan desteğe tek ekip</span></li>
       </ul>
     </div>
 
-    <!-- Örnek kontrol paneli (görsel amaçlı) -->
     <div class="dash" aria-label="Örnek tarla kontrol paneli">
       <div class="dash-head">
-        <b>Parsel A-12 <small>Buğday · 42 dekar</small></b>
-        <span class="live">CANLI</span>
+        <b><span data-i18n="dash.plot">Parsel A-12</span> <small data-i18n="dash.crop">Buğday · 42 dekar</small></b>
+        <span class="live" data-i18n="dash.live">CANLI</span>
       </div>
       <div class="metrics">
-        <div class="metric"><span>Toprak nemi</span><strong><b data-live="moist">34</b><em>%</em></strong><div class="bar"><i data-bar="moist" style="width:34%"></i></div></div>
-        <div class="metric"><span>Toprak sıcaklığı</span><strong><b data-live="temp">18.6</b><em>°C</em></strong><div class="bar"><i data-bar="temp" style="width:52%"></i></div></div>
-        <div class="metric"><span>pH değeri</span><strong><b data-live="ph">6.8</b></strong><div class="bar"><i style="width:68%"></i></div></div>
-        <div class="metric"><span>Azot (N)</span><strong>Yeterli</strong><div class="bar"><i style="width:78%"></i></div></div>
+        <div class="metric"><span data-i18n="dash.moist">Toprak nemi</span><strong><b data-live="moist">34</b><em>%</em></strong><div class="bar"><i data-bar="moist" style="width:34%"></i></div></div>
+        <div class="metric"><span data-i18n="dash.temp">Toprak sıcaklığı</span><strong><b data-live="temp">18.6</b><em>°C</em></strong><div class="bar"><i data-bar="temp" style="width:52%"></i></div></div>
+        <div class="metric"><span data-i18n="dash.ph">pH değeri</span><strong><b data-live="ph">6.8</b></strong><div class="bar"><i style="width:68%"></i></div></div>
+        <div class="metric"><span data-i18n="dash.n">Azot (N)</span><strong data-i18n="dash.nval">Yeterli</strong><div class="bar"><i style="width:78%"></i></div></div>
       </div>
       <div class="spark">
-        <div class="spark-top"><span>Haftalık nem eğilimi</span><b>Optimum aralıkta</b></div>
+        <div class="spark-top"><span data-i18n="dash.trend">Haftalık nem eğilimi</span><b data-i18n="dash.opt">Optimum aralıkta</b></div>
         <svg viewBox="0 0 300 70" preserveAspectRatio="none" aria-hidden="true">
-          <defs><linearGradient id="sg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5cc8f0" stop-opacity=".45"/><stop offset="1" stop-color="#5cc8f0" stop-opacity="0"/></linearGradient>
-          <linearGradient id="sl" x1="0" x2="1"><stop offset="0" stop-color="#6fe3a5"/><stop offset="1" stop-color="#5cc8f0"/></linearGradient></defs>
+          <defs><linearGradient id="sg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3aa0dc" stop-opacity=".4"/><stop offset="1" stop-color="#3aa0dc" stop-opacity="0"/></linearGradient>
+          <linearGradient id="sl" x1="0" x2="1"><stop offset="0" stop-color="#8cc63f"/><stop offset="1" stop-color="#3aa0dc"/></linearGradient></defs>
           <path d="M0 48 C25 44 40 30 60 34 S100 52 120 42 S160 20 180 26 S220 46 240 36 S280 18 300 22 V70 H0Z" fill="url(#sg)"/>
           <path d="M0 48 C25 44 40 30 60 34 S100 52 120 42 S160 20 180 26 S220 46 240 36 S280 18 300 22" fill="none" stroke="url(#sl)" stroke-width="2.5"/>
         </svg>
       </div>
-      <div class="dash-alert"><svg><use href="#i-bell"/></svg><span>Yarın 06:00 için <b>18 dk</b> sulama planlandı.</span></div>
-      <p class="dash-note">Örnek gösterimdir</p>
+      <div class="dash-alert"><svg><use href="#i-bell"/></svg><span data-i18n-html="dash.alert">Yarın 06:00 için <b>18 dk</b> sulama planlandı.</span></div>
+      <p class="dash-note" data-i18n="dash.note">Örnek gösterimdir</p>
     </div>
   </div>
-  <a href="#highlights" class="scroll-cue" aria-label="Aşağı kaydır"></a>
 </section>
 
 <!-- ===== ÖNE ÇIKANLAR ===== -->
 <div class="strip" id="highlights">
   <div class="wrap">
-    <div class="strip-item"><b>6</b><span>Akıllı tarım<br>ürünü</span></div>
-    <div class="strip-item"><b>7/24</b><span>Teknik destek<br>hizmeti</span></div>
-    <div class="strip-item"><b>360°</b><span>Sensörden rapora<br>bütünleşik çözüm</span></div>
-    <div class="strip-item"><b>TR</b><span>Kayseri merkezli<br>yerli ekip</span></div>
+    <div class="strip-item"><b>6</b><span data-i18n-html="strip.1">Akıllı tarım<br>ürünü</span></div>
+    <div class="strip-item"><b>7/24</b><span data-i18n-html="strip.2">Teknik destek<br>hizmeti</span></div>
+    <div class="strip-item"><b>360°</b><span data-i18n-html="strip.3">Sensörden rapora<br>bütünleşik çözüm</span></div>
+    <div class="strip-item"><b>TR</b><span data-i18n-html="strip.4">Kayseri merkezli<br>yerli ekip</span></div>
   </div>
 </div>
 
@@ -176,37 +192,37 @@
   <div class="wrap about-grid">
     <div class="about-visual reveal">
       <span class="orbit o1"></span><span class="orbit o2"></span>
-      <img src="assets/img/logo-512.png" width="512" height="512" alt="MUSTECH logosu" loading="lazy">
-      <div class="about-badge"><svg><use href="#i-shield"/></svg><span><b>Donanım + Yazılım + Saha</b><br>tek çatı altında</span></div>
+      <img src="assets/img/logo-512.png" width="512" height="512" alt="MUSTECH" loading="lazy">
+      <div class="about-badge"><svg><use href="#i-shield"/></svg><span data-i18n-html="about.badge"><b>Donanım + Yazılım + Saha</b><br>tek çatı altında</span></div>
     </div>
     <div class="about-text reveal" style="--d:.1s">
-      <p class="label">Hakkımızda</p>
-      <h2 class="h2">Topraktan <em>veriye</em>, veriden geleceğe</h2>
-      <p class="lead">MUSTECH olarak Türkiye'nin tarım sektörünü dijital dönüşüme taşımak için kurulduk.</p>
-      <p>Donanım, yazılım ve sahada destek hizmetlerini tek çatı altında birleştiren bütünleşik çözümlerimizle çiftçilerin kararlarını veriye dayandırmalarını sağlıyoruz.</p>
+      <p class="label" data-i18n="about.label">Hakkımızda</p>
+      <h2 class="h2" data-i18n-html="about.title">Topraktan <em>veriye</em>, veriden geleceğe</h2>
+      <p class="lead" data-i18n="about.lead">MUSTECH olarak Türkiye'nin tarım sektörünü dijital dönüşüme taşımak için kurulduk.</p>
+      <p data-i18n="about.p">Donanım, yazılım ve sahada destek hizmetlerini tek çatı altında birleştiren bütünleşik çözümlerimizle çiftçilerin kararlarını veriye dayandırmalarını sağlıyoruz.</p>
       <ul class="checks">
-        <li><span class="ci"><svg><use href="#i-chip"/></svg></span><div><b>Akıllı donanım</b><span>Tarlada çalışan sensörler, istasyonlar ve görüntüleme modülleri.</span></div></li>
-        <li><span class="ci"><svg><use href="#i-brain"/></svg></span><div><b>Yapay zeka destekli yazılım</b><span>Verileri anlamlı önerilere dönüştüren analiz platformu.</span></div></li>
-        <li><span class="ci"><svg><use href="#i-tractor"/></svg></span><div><b>Sahada uzman ekip</b><span>Kurulum, eğitim ve bakımda yanınızda.</span></div></li>
+        <li><span class="ci"><svg><use href="#i-chip"/></svg></span><div><b data-i18n="about.c1t">Akıllı donanım</b><span data-i18n="about.c1d">Tarlada çalışan sensörler, istasyonlar ve görüntüleme modülleri.</span></div></li>
+        <li><span class="ci"><svg><use href="#i-brain"/></svg></span><div><b data-i18n="about.c2t">Yapay zeka destekli yazılım</b><span data-i18n="about.c2d">Verileri anlamlı önerilere dönüştüren analiz platformu.</span></div></li>
+        <li><span class="ci"><svg><use href="#i-tractor"/></svg></span><div><b data-i18n="about.c3t">Sahada uzman ekip</b><span data-i18n="about.c3d">Kurulum, eğitim ve bakımda yanınızda.</span></div></li>
       </ul>
-      <a href="#contact" class="btn btn-dark">Daha Fazla Bilgi Alın <svg><use href="#i-arrow"/></svg></a>
+      <a href="#contact" class="btn btn-dark"><span data-i18n="about.cta">Daha Fazla Bilgi Alın</span> <svg><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
 
 <!-- ===== NASIL ÇALIŞIR ===== -->
-<section id="process" class="dark">
+<section id="process" class="deep">
   <div class="wrap">
     <div class="section-head center reveal">
-      <p class="label">Nasıl Çalışır</p>
-      <h2 class="h2">Dört adımda <em>akıllı tarım</em></h2>
-      <p class="lead">Tarladan toplanan veri, doğru zamanda doğru karara dönüşür.</p>
+      <p class="label" data-i18n="proc.label">Nasıl Çalışır</p>
+      <h2 class="h2" data-i18n-html="proc.title">Dört adımda <em>akıllı tarım</em></h2>
+      <p class="lead" data-i18n="proc.lead">Tarladan toplanan veri, doğru zamanda doğru karara dönüşür.</p>
     </div>
     <div class="steps">
-      <div class="step reveal"><div class="step-ico"><svg><use href="#i-chip"/></svg></div><h3>Ölç</h3><p>Sensörler ve istasyonlar toprak, su ve iklim verilerini sürekli toplar.</p></div>
-      <div class="step reveal" style="--d:.1s"><div class="step-ico"><svg><use href="#i-brain"/></svg></div><h3>Analiz et</h3><p>Yapay zeka verileri işler, riskleri ve fırsatları erkenden tespit eder.</p></div>
-      <div class="step reveal" style="--d:.2s"><div class="step-ico"><svg><use href="#i-target"/></svg></div><h3>Öner</h3><p>Sulama, gübreleme ve ilaçlama için net, uygulanabilir öneriler sunar.</p></div>
-      <div class="step reveal" style="--d:.3s"><div class="step-ico"><svg><use href="#i-tractor"/></svg></div><h3>Uygula</h3><p>Otomasyon ve saha ekibimizle öneriler tarlada hayata geçer.</p></div>
+      <div class="step reveal"><div class="step-ico"><svg><use href="#i-chip"/></svg></div><h3 data-i18n="proc.s1t">Ölç</h3><p data-i18n="proc.s1d">Sensörler ve istasyonlar toprak, su ve iklim verilerini sürekli toplar.</p></div>
+      <div class="step reveal" style="--d:.1s"><div class="step-ico"><svg><use href="#i-brain"/></svg></div><h3 data-i18n="proc.s2t">Analiz et</h3><p data-i18n="proc.s2d">Yapay zeka verileri işler, riskleri ve fırsatları erkenden tespit eder.</p></div>
+      <div class="step reveal" style="--d:.2s"><div class="step-ico"><svg><use href="#i-target"/></svg></div><h3 data-i18n="proc.s3t">Öner</h3><p data-i18n="proc.s3d">Sulama, gübreleme ve ilaçlama için net, uygulanabilir öneriler sunar.</p></div>
+      <div class="step reveal" style="--d:.3s"><div class="step-ico"><svg><use href="#i-tractor"/></svg></div><h3 data-i18n="proc.s4t">Uygula</h3><p data-i18n="proc.s4d">Otomasyon ve saha ekibimizle öneriler tarlada hayata geçer.</p></div>
     </div>
   </div>
 </section>
@@ -215,52 +231,52 @@
 <section id="products">
   <div class="wrap">
     <div class="section-head reveal">
-      <p class="label">Ürünlerimiz</p>
-      <h2 class="h2">Tarla için <em>akıllı</em> çözümler</h2>
-      <p class="lead">Birlikte ya da ayrı ayrı çalışabilen, işletmenizin ölçeğine göre büyüyen ürün ailesi.</p>
+      <p class="label" data-i18n="prod.label">Ürünlerimiz</p>
+      <h2 class="h2" data-i18n-html="prod.title">Tarla için <em>akıllı</em> çözümler</h2>
+      <p class="lead" data-i18n="prod.lead">Birlikte ya da ayrı ayrı çalışabilen, işletmenizin ölçeğine göre büyüyen ürün ailesi.</p>
     </div>
     <div class="products-grid">
       <article class="product reveal" id="urun-sulama">
-        <div class="p-top"><span class="p-ico"><svg><use href="#i-drop"/></svg></span><span class="tag">Donanım + Yazılım</span></div>
-        <h3>Akıllı Sulama Sistemi</h3>
-        <p>Toprak nem sensörleri ve hava durumu verisiyle otomatik sulama zamanlaması. Su tasarrufu ve verim artışı.</p>
-        <ul class="p-feats"><li>Otomatik zamanlama</li><li>Uzaktan kontrol</li><li>Su tasarrufu</li></ul>
-        <a href="#contact" class="p-link" data-product="Akıllı Sulama Sistemi">Bilgi alın <svg><use href="#i-arrow"/></svg></a>
+        <div class="p-top"><span class="p-ico"><svg><use href="#i-drop"/></svg></span><span class="tag" data-i18n="p1.tag">Donanım + Yazılım</span></div>
+        <h3 data-i18n="p1.name">Akıllı Sulama Sistemi</h3>
+        <p data-i18n="p1.desc">Toprak nem sensörleri ve hava durumu verisiyle otomatik sulama zamanlaması. Su tasarrufu ve verim artışı.</p>
+        <ul class="p-feats" data-i18n-html="p1.feats"><li>Otomatik zamanlama</li><li>Uzaktan kontrol</li><li>Su tasarrufu</li></ul>
+        <a href="#contact" class="p-link" data-product="Akıllı Sulama Sistemi"><span data-i18n="prod.more">Bilgi alın</span> <svg><use href="#i-arrow"/></svg></a>
       </article>
       <article class="product reveal" id="urun-toprak" style="--d:.08s">
-        <div class="p-top"><span class="p-ico"><svg><use href="#i-sprout"/></svg></span><span class="tag">Sensör</span></div>
-        <h3>Toprak Analiz Sensörü</h3>
-        <p>pH, nem, sıcaklık ve besin değerlerini gerçek zamanlı ölçen kablosuz sensör ağı.</p>
-        <ul class="p-feats"><li>pH</li><li>Nem</li><li>Sıcaklık</li><li>Besin değerleri</li></ul>
-        <a href="#contact" class="p-link" data-product="Toprak Analiz Sensörü">Bilgi alın <svg><use href="#i-arrow"/></svg></a>
+        <div class="p-top"><span class="p-ico"><svg><use href="#i-sprout"/></svg></span><span class="tag" data-i18n="p2.tag">Sensör</span></div>
+        <h3 data-i18n="p2.name">Toprak Analiz Sensörü</h3>
+        <p data-i18n="p2.desc">pH, nem, sıcaklık ve besin değerlerini gerçek zamanlı ölçen kablosuz sensör ağı.</p>
+        <ul class="p-feats" data-i18n-html="p2.feats"><li>pH</li><li>Nem</li><li>Sıcaklık</li><li>Besin değerleri</li></ul>
+        <a href="#contact" class="p-link" data-product="Toprak Analiz Sensörü"><span data-i18n="prod.more">Bilgi alın</span> <svg><use href="#i-arrow"/></svg></a>
       </article>
       <article class="product reveal" id="urun-drone" style="--d:.16s">
-        <div class="p-top"><span class="p-ico"><svg><use href="#i-drone"/></svg></span><span class="tag">Görüntüleme</span></div>
-        <h3>Drone Görüntüleme Modülü</h3>
-        <p>Multispektral kamera ile tarla sağlığını haritalayan yapay zeka destekli görüntüleme platformu.</p>
-        <ul class="p-feats"><li>Multispektral</li><li>Bitki sağlığı haritası</li></ul>
-        <a href="#contact" class="p-link" data-product="Drone Görüntüleme Modülü">Bilgi alın <svg><use href="#i-arrow"/></svg></a>
+        <div class="p-top"><span class="p-ico"><svg><use href="#i-drone"/></svg></span><span class="tag" data-i18n="p3.tag">Görüntüleme</span></div>
+        <h3 data-i18n="p3.name">Drone Görüntüleme Modülü</h3>
+        <p data-i18n="p3.desc">Multispektral kamera ile tarla sağlığını haritalayan yapay zeka destekli görüntüleme platformu.</p>
+        <ul class="p-feats" data-i18n-html="p3.feats"><li>Multispektral</li><li>Bitki sağlığı haritası</li></ul>
+        <a href="#contact" class="p-link" data-product="Drone Görüntüleme Modülü"><span data-i18n="prod.more">Bilgi alın</span> <svg><use href="#i-arrow"/></svg></a>
       </article>
       <article class="product reveal" id="urun-yazilim">
-        <div class="p-top"><span class="p-ico"><svg><use href="#i-dash"/></svg></span><span class="tag">Yazılım</span></div>
-        <h3>Tarla Yönetim Yazılımı</h3>
-        <p>Tüm operasyonları tek ekrandan yönetin. Ekim planı, hasat takvimi, maliyet takibi.</p>
-        <ul class="p-feats"><li>Ekim planı</li><li>Hasat takvimi</li><li>Maliyet takibi</li></ul>
-        <a href="#contact" class="p-link" data-product="Tarla Yönetim Yazılımı">Bilgi alın <svg><use href="#i-arrow"/></svg></a>
+        <div class="p-top"><span class="p-ico"><svg><use href="#i-dash"/></svg></span><span class="tag" data-i18n="p4.tag">Yazılım</span></div>
+        <h3 data-i18n="p4.name">Tarla Yönetim Yazılımı</h3>
+        <p data-i18n="p4.desc">Tüm operasyonları tek ekrandan yönetin. Ekim planı, hasat takvimi, maliyet takibi.</p>
+        <ul class="p-feats" data-i18n-html="p4.feats"><li>Ekim planı</li><li>Hasat takvimi</li><li>Maliyet takibi</li></ul>
+        <a href="#contact" class="p-link" data-product="Tarla Yönetim Yazılımı"><span data-i18n="prod.more">Bilgi alın</span> <svg><use href="#i-arrow"/></svg></a>
       </article>
       <article class="product reveal" id="urun-hava" style="--d:.08s">
-        <div class="p-top"><span class="p-ico"><svg><use href="#i-cloud"/></svg></span><span class="tag">İstasyon</span></div>
-        <h3>Hava Durumu İstasyonu</h3>
-        <p>Tarla başında mikro-iklim verileri toplayan kompakt istasyon. Yağmur, rüzgar, nem ve UV endeksi.</p>
-        <ul class="p-feats"><li>Yağış</li><li>Rüzgar</li><li>Nem</li><li>UV endeksi</li></ul>
-        <a href="#contact" class="p-link" data-product="Hava Durumu İstasyonu">Bilgi alın <svg><use href="#i-arrow"/></svg></a>
+        <div class="p-top"><span class="p-ico"><svg><use href="#i-cloud"/></svg></span><span class="tag" data-i18n="p5.tag">İstasyon</span></div>
+        <h3 data-i18n="p5.name">Hava Durumu İstasyonu</h3>
+        <p data-i18n="p5.desc">Tarla başında mikro-iklim verileri toplayan kompakt istasyon. Yağmur, rüzgar, nem ve UV endeksi.</p>
+        <ul class="p-feats" data-i18n-html="p5.feats"><li>Yağış</li><li>Rüzgar</li><li>Nem</li><li>UV endeksi</li></ul>
+        <a href="#contact" class="p-link" data-product="Hava Durumu İstasyonu"><span data-i18n="prod.more">Bilgi alın</span> <svg><use href="#i-arrow"/></svg></a>
       </article>
       <article class="product reveal" id="urun-gubre" style="--d:.16s">
-        <div class="p-top"><span class="p-ico"><svg><use href="#i-flask"/></svg></span><span class="tag">Yapay Zeka</span></div>
-        <h3>Gübre Optimizasyon Platformu</h3>
-        <p>Toprak analizi ve bitki ihtiyacına göre gübre dozunu hesaplayan yapay zeka motoru.</p>
-        <ul class="p-feats"><li>Doz hesaplama</li><li>Maliyet düşürme</li></ul>
-        <a href="#contact" class="p-link" data-product="Gübre Optimizasyon Platformu">Bilgi alın <svg><use href="#i-arrow"/></svg></a>
+        <div class="p-top"><span class="p-ico"><svg><use href="#i-flask"/></svg></span><span class="tag" data-i18n="p6.tag">Yapay Zeka</span></div>
+        <h3 data-i18n="p6.name">Gübre Optimizasyon Platformu</h3>
+        <p data-i18n="p6.desc">Toprak analizi ve bitki ihtiyacına göre gübre dozunu hesaplayan yapay zeka motoru.</p>
+        <ul class="p-feats" data-i18n-html="p6.feats"><li>Doz hesaplama</li><li>Maliyet düşürme</li></ul>
+        <a href="#contact" class="p-link" data-product="Gübre Optimizasyon Platformu"><span data-i18n="prod.more">Bilgi alın</span> <svg><use href="#i-arrow"/></svg></a>
       </article>
     </div>
   </div>
@@ -270,17 +286,17 @@
 <section id="services">
   <div class="wrap">
     <div class="section-head reveal">
-      <p class="label">Hizmetlerimiz</p>
-      <h2 class="h2">Tarladan <em>sonuca</em> uçtan uca destek</h2>
-      <p class="lead">Ürün satışının ötesinde; kurulum, eğitim ve sürekli teknik destek hizmetleri sunuyoruz.</p>
+      <p class="label" data-i18n="serv.label">Hizmetlerimiz</p>
+      <h2 class="h2" data-i18n-html="serv.title">Tarladan <em>sonuca</em> uçtan uca destek</h2>
+      <p class="lead" data-i18n="serv.lead">Ürün satışının ötesinde; kurulum, eğitim ve sürekli teknik destek hizmetleri sunuyoruz.</p>
     </div>
     <div class="services-grid reveal">
-      <div class="service"><span class="num">01</span><h3>Saha Kurulum ve Devreye Alma</h3><p>Uzman ekibimiz cihazlarınızı tarlanıza kurar, yapılandırır ve devreye alır.</p></div>
-      <div class="service"><span class="num">02</span><h3>Teknik Eğitim</h3><p>Çiftçi ve teknik personele yönelik ürün kullanım eğitimleri ve sertifika programları.</p></div>
-      <div class="service"><span class="num">03</span><h3>7/24 Teknik Destek</h3><p>Telefon, uzaktan bağlantı ve saha ziyareti ile kesintisiz destek hizmeti.</p></div>
-      <div class="service"><span class="num">04</span><h3>Veri Analizi ve Raporlama</h3><p>Toprak, su ve iklim verilerini yorumlayarak karar destek raporları hazırlıyoruz.</p></div>
-      <div class="service"><span class="num">05</span><h3>Bakım ve Periyodik Servis</h3><p>Sensör kalibrasyonu, yazılım güncellemeleri ve donanım bakım paketleri.</p></div>
-      <div class="service"><span class="num">06</span><h3>Özel Proje Geliştirme</h3><p>İşletmenizin özel ihtiyaçlarına göre tasarlanmış çözümler ve entegrasyon hizmetleri.</p></div>
+      <div class="service"><span class="num">01</span><h3 data-i18n="serv.s1t">Saha Kurulum ve Devreye Alma</h3><p data-i18n="serv.s1d">Uzman ekibimiz cihazlarınızı tarlanıza kurar, yapılandırır ve devreye alır.</p></div>
+      <div class="service"><span class="num">02</span><h3 data-i18n="serv.s2t">Teknik Eğitim</h3><p data-i18n="serv.s2d">Çiftçi ve teknik personele yönelik ürün kullanım eğitimleri ve sertifika programları.</p></div>
+      <div class="service"><span class="num">03</span><h3 data-i18n="serv.s3t">7/24 Teknik Destek</h3><p data-i18n="serv.s3d">Telefon, uzaktan bağlantı ve saha ziyareti ile kesintisiz destek hizmeti.</p></div>
+      <div class="service"><span class="num">04</span><h3 data-i18n="serv.s4t">Veri Analizi ve Raporlama</h3><p data-i18n="serv.s4d">Toprak, su ve iklim verilerini yorumlayarak karar destek raporları hazırlıyoruz.</p></div>
+      <div class="service"><span class="num">05</span><h3 data-i18n="serv.s5t">Bakım ve Periyodik Servis</h3><p data-i18n="serv.s5d">Sensör kalibrasyonu, yazılım güncellemeleri ve donanım bakım paketleri.</p></div>
+      <div class="service"><span class="num">06</span><h3 data-i18n="serv.s6t">Özel Proje Geliştirme</h3><p data-i18n="serv.s6d">İşletmenizin özel ihtiyaçlarına göre tasarlanmış çözümler ve entegrasyon hizmetleri.</p></div>
     </div>
   </div>
 </section>
@@ -290,10 +306,10 @@
   <div class="wrap">
     <div class="cta-box reveal">
       <div>
-        <h2>Tarlanız için doğru çözümü birlikte belirleyelim.</h2>
-        <p>İhtiyacınızı anlatın, size uygun ürün ve hizmet paketini önerelim.</p>
+        <h2 data-i18n="cta.title">Tarlanız için doğru çözümü birlikte belirleyelim.</h2>
+        <p data-i18n="cta.sub">İhtiyacınızı anlatın, size uygun ürün ve hizmet paketini önerelim.</p>
       </div>
-      <a href="#contact" class="btn btn-primary">Görüşme Talep Edin <svg><use href="#i-arrow"/></svg></a>
+      <a href="#contact" class="btn btn-primary"><span data-i18n="cta.btn">Görüşme Talep Edin</span> <svg><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
@@ -302,42 +318,43 @@
 <section id="contact">
   <div class="wrap contact-grid">
     <div class="reveal">
-      <p class="label">İletişim</p>
-      <h2 class="h2">Hemen <em>iletişime</em> geçin</h2>
-      <p class="lead">Ürünlerimiz, projeleriniz veya iş birliği için bize yazın. En kısa sürede dönüş yapıyoruz.</p>
+      <p class="label" data-i18n="contact.label">İletişim</p>
+      <h2 class="h2" data-i18n-html="contact.title">Hemen <em>iletişime</em> geçin</h2>
+      <p class="lead" data-i18n="contact.lead">Ürünlerimiz, projeleriniz veya iş birliği için bize yazın. En kısa sürede dönüş yapıyoruz.</p>
       <ul class="c-list">
-        <li><a href="mailto:info@mustech.com.tr"><span class="ci"><svg><use href="#i-mail"/></svg></span><span><small>E-posta</small><b>info@mustech.com.tr</b></span></a></li>
+        <li><a href="mailto:mustechagro@gmail.com"><span class="ci"><svg><use href="#i-mail"/></svg></span><span><small data-i18n="contact.email">E-posta</small><b>mustechagro@gmail.com</b></span></a></li>
         <!-- TELEFON: numara belli olunca aşağıdaki satırın yorumunu kaldırın
-        <li><a href="tel:+900000000000"><span class="ci"><svg><use href="#i-phone"/></svg></span><span><small>Telefon</small><b>+90 (000) 000 00 00</b></span></a></li>
+        <li><a href="tel:+900000000000"><span class="ci"><svg><use href="#i-phone"/></svg></span><span><small data-i18n="contact.phone">Telefon</small><b>+90 (000) 000 00 00</b></span></a></li>
         -->
-        <li><div><span class="ci"><svg><use href="#i-pin"/></svg></span><span><small>Adres</small><b>Kayseri, Türkiye</b></span></div></li>
+        <li><div><span class="ci"><svg><use href="#i-pin"/></svg></span><span><small data-i18n="contact.address">Adres</small><b>Kayseri, Türkiye</b></span></div></li>
       </ul>
     </div>
 
     <form class="form reveal" id="contactForm" style="--d:.1s" novalidate>
-      <h3>Bize mesaj gönderin</h3>
-      <p>Formu doldurun, e-posta uygulamanız mesajınız hazır şekilde açılsın.</p>
+      <h3 data-i18n="form.title">Bize mesaj gönderin</h3>
+      <p data-i18n="form.sub">Mesajınız doğrudan ekibimize iletilir.</p>
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
       <div class="f-row">
-        <div class="field"><label for="f-name">Ad Soyad</label><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Adınız Soyadınız" required></div>
-        <div class="field"><label for="f-phone">Telefon</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="05xx xxx xx xx"></div>
+        <div class="field"><label for="f-name" data-i18n="form.name">Ad Soyad</label><input id="f-name" name="name" type="text" autocomplete="name" data-i18n-ph="form.namePh" placeholder="Adınız Soyadınız" required></div>
+        <div class="field"><label for="f-phone" data-i18n="form.phone">Telefon</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="05xx xxx xx xx"></div>
       </div>
-      <div class="field"><label for="f-email">E-posta</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="ornek@email.com" required></div>
+      <div class="field"><label for="f-email" data-i18n="form.email">E-posta</label><input id="f-email" name="email" type="email" autocomplete="email" data-i18n-ph="form.emailPh" placeholder="ornek@email.com" required></div>
       <div class="field">
-        <label for="f-topic">Konu</label>
+        <label for="f-topic" data-i18n="form.topic">Konu</label>
         <select id="f-topic" name="topic">
-          <option>Genel bilgi</option>
-          <option>Akıllı Sulama Sistemi</option>
-          <option>Toprak Analiz Sensörü</option>
-          <option>Drone Görüntüleme Modülü</option>
-          <option>Tarla Yönetim Yazılımı</option>
-          <option>Hava Durumu İstasyonu</option>
-          <option>Gübre Optimizasyon Platformu</option>
-          <option>Teknik destek</option>
-          <option>İş birliği</option>
+          <option value="Genel bilgi" data-i18n="t.general">Genel bilgi</option>
+          <option value="Akıllı Sulama Sistemi" data-i18n="p1.name">Akıllı Sulama Sistemi</option>
+          <option value="Toprak Analiz Sensörü" data-i18n="p2.name">Toprak Analiz Sensörü</option>
+          <option value="Drone Görüntüleme Modülü" data-i18n="p3.name">Drone Görüntüleme Modülü</option>
+          <option value="Tarla Yönetim Yazılımı" data-i18n="p4.name">Tarla Yönetim Yazılımı</option>
+          <option value="Hava Durumu İstasyonu" data-i18n="p5.name">Hava Durumu İstasyonu</option>
+          <option value="Gübre Optimizasyon Platformu" data-i18n="p6.name">Gübre Optimizasyon Platformu</option>
+          <option value="Teknik destek" data-i18n="t.support">Teknik destek</option>
+          <option value="İş birliği" data-i18n="t.partner">İş birliği</option>
         </select>
       </div>
-      <div class="field"><label for="f-msg">Mesajınız</label><textarea id="f-msg" name="message" rows="4" placeholder="Tarlanız, ürününüz veya ihtiyacınız hakkında kısaca bilgi verin..." required></textarea></div>
-      <button type="submit" class="btn btn-primary">Mesajı Gönder <svg><use href="#i-arrow"/></svg></button>
+      <div class="field"><label for="f-msg" data-i18n="form.msg">Mesajınız</label><textarea id="f-msg" name="message" rows="4" data-i18n-ph="form.msgPh" placeholder="Tarlanız, ürününüz veya ihtiyacınız hakkında kısaca bilgi verin..." required></textarea></div>
+      <button type="submit" class="btn btn-primary" id="formBtn"><span data-i18n="form.send">Mesajı Gönder</span> <svg><use href="#i-arrow"/></svg></button>
       <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
     </form>
   </div>
@@ -347,33 +364,56 @@
 
 <!-- ===== FOOTER ===== -->
 <footer>
+  <canvas id="footerWheat" class="footer-wheat" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="f-grid">
       <div>
         <a href="#hero" class="brand" aria-label="MUSTECH">
-          <span class="brand-mark"><img src="assets/img/logo.png" width="40" height="40" alt="" loading="lazy"></span>
-          <span class="brand-name">MUS<span>TECH</span><small>AKILLI TARIM</small></span>
+          <img src="assets/img/logo.png" width="48" height="48" alt="" loading="lazy">
+          <span class="brand-name">MUS<span>TECH</span><small data-i18n="brand.tag">AKILLI TARIM</small></span>
         </a>
-        <p class="f-about">Sensörler, veri analitiği ve saha desteğiyle tarımın dijital dönüşümüne öncülük ediyoruz.</p>
+        <p class="f-about" data-i18n="footer.about">Sensörler, veri analitiği ve saha desteğiyle tarımın dijital dönüşümüne öncülük ediyoruz.</p>
       </div>
       <div>
-        <h4>Kurumsal</h4>
-        <ul><li><a href="#about">Hakkımızda</a></li><li><a href="#process">Nasıl Çalışır</a></li><li><a href="#services">Hizmetler</a></li><li><a href="#contact">İletişim</a></li></ul>
+        <h4 data-i18n="footer.corp">Kurumsal</h4>
+        <ul><li><a href="#about" data-i18n="nav.about">Hakkımızda</a></li><li><a href="#process" data-i18n="nav.process">Nasıl Çalışır</a></li><li><a href="#services" data-i18n="nav.services">Hizmetler</a></li><li><a href="#contact" data-i18n="nav.contact">İletişim</a></li></ul>
       </div>
       <div>
-        <h4>Ürünler</h4>
-        <ul><li><a href="#urun-sulama">Akıllı Sulama</a></li><li><a href="#urun-toprak">Toprak Sensörü</a></li><li><a href="#urun-drone">Drone Görüntüleme</a></li><li><a href="#urun-yazilim">Tarla Yönetimi</a></li></ul>
+        <h4 data-i18n="nav.products">Ürünler</h4>
+        <ul><li><a href="#urun-sulama" data-i18n="p1.name">Akıllı Sulama Sistemi</a></li><li><a href="#urun-toprak" data-i18n="p2.name">Toprak Analiz Sensörü</a></li><li><a href="#urun-drone" data-i18n="p3.name">Drone Görüntüleme Modülü</a></li><li><a href="#urun-yazilim" data-i18n="p4.name">Tarla Yönetim Yazılımı</a></li></ul>
       </div>
       <div>
-        <h4>İletişim</h4>
-        <ul><li><a href="mailto:info@mustech.com.tr">info@mustech.com.tr</a></li><li>Kayseri, Türkiye</li></ul>
+        <h4 data-i18n="nav.contact">İletişim</h4>
+        <ul><li><a href="mailto:mustechagro@gmail.com">mustechagro@gmail.com</a></li><li>Kayseri, Türkiye</li></ul>
       </div>
     </div>
     <div class="f-bottom">
-      <span>© <span id="year">2026</span> MUSTECH. Tüm hakları saklıdır.</span>
-      <a href="#hero" class="to-top">Başa dön ↑</a>
+      <span>© <span id="year">2026</span> MUSTECH. <span data-i18n="footer.rights">Tüm hakları saklıdır.</span></span>
+      <a href="#hero" class="to-top"><span data-i18n="footer.top">Başa dön</span> ↑</a>
     </div>
   </div>
 </footer>
+
+<!-- ===== ASİSTAN (BOT) ===== -->
+<div class="bot" id="bot">
+  <button class="bot-fab" id="botFab" type="button" aria-expanded="false" aria-controls="botPanel" data-i18n-aria="bot.open" aria-label="Asistana soru sor">
+    <svg class="ico-chat"><use href="#i-chat"/></svg><svg class="ico-x"><use href="#i-x"/></svg>
+    <span class="bot-ping" aria-hidden="true"></span>
+  </button>
+  <div class="bot-panel" id="botPanel" role="dialog" aria-labelledby="botTitle" hidden>
+    <div class="bot-head">
+      <img src="assets/img/logo.png" width="36" height="36" alt="">
+      <div><b id="botTitle" data-i18n="bot.title">MUSTECH Asistan</b><small><i></i><span data-i18n="bot.status">Çevrimiçi · genellikle anında yanıtlar</span></small></div>
+      <button class="bot-close" id="botClose" type="button" data-i18n-aria="bot.close" aria-label="Kapat"><svg><use href="#i-x"/></svg></button>
+    </div>
+    <div class="bot-msgs" id="botMsgs" aria-live="polite"></div>
+    <div class="bot-chips" id="botChips"></div>
+    <form class="bot-input" id="botForm" autocomplete="off">
+      <input id="botText" type="text" maxlength="300" data-i18n-ph="bot.ph" placeholder="Sorunuzu yazın..." aria-label="Mesaj">
+      <button type="submit" data-i18n-aria="bot.send" aria-label="Gönder"><svg><use href="#i-send"/></svg></button>
+    </form>
+  </div>
+</div>
+
 </body>
 </html>
