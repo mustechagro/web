@@ -454,28 +454,6 @@ footer ul a:hover { color: var(--lime); }
 .bot-input button { width: 44px; border-radius: 12px; border: 0; background: var(--grad); color: var(--on-grad); display: grid; place-items: center; }
 .bot-input button svg { width: 18px; height: 18px; }
 
-/* ---------- Fare ışığı ---------- */
-:root { --glow-a: rgba(140, 198, 63, .45); --glow-b: rgba(58, 160, 220, .22); --spot: rgba(47, 138, 61, .16); --spot-line: rgba(47, 138, 61, .45); --core: rgba(140, 198, 63, .9); }
-[data-theme="dark"] { --glow-a: rgba(159, 209, 74, .32); --glow-b: rgba(58, 160, 220, .2); --spot: rgba(159, 209, 74, .18); --spot-line: rgba(159, 209, 74, .55); --core: rgba(190, 240, 120, .95); }
-.cursor-light {
-  position: fixed; left: 0; top: 0; width: 0; height: 0; pointer-events: none; z-index: 900;
-  opacity: 0; transition: opacity .4s; will-change: transform;
-}
-.cursor-light::before {
-  content: ''; position: absolute; left: -380px; top: -380px; width: 760px; height: 760px; border-radius: 50%;
-  background: radial-gradient(circle, var(--glow-a) 0%, var(--glow-b) 30%, transparent 66%);
-}
-.cursor-light i {
-  position: absolute; left: -9px; top: -9px; width: 18px; height: 18px; border-radius: 50%;
-  background: radial-gradient(circle, #fff 0%, var(--core) 45%, transparent 72%);
-  box-shadow: 0 0 24px 8px var(--glow-a); transition: transform .2s;
-}
-.cursor-light.press i { transform: scale(1.8); }
-.cursor-light.on { opacity: 1; }
-[data-theme="dark"] .cursor-light::before { mix-blend-mode: screen; }
-.spot, .agro-item { background-image: radial-gradient(360px circle at var(--x, -999px) var(--y, -999px), var(--spot), transparent 55%); }
-.spot:hover, .agro-item:hover { border-color: var(--spot-line); }
-
 /* ---------- Kullanışlılık ---------- */
 .progress { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--grad); transform: scaleX(0); transform-origin: left; pointer-events: none; }
 .nav-badge { font-style: italic; font-size: .6rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 100px; background: var(--grad); color: var(--on-grad); line-height: 1.4; }
@@ -592,7 +570,7 @@ footer ul a:hover { color: var(--lime); }
 .faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: start; }
 .faq-list { display: grid; gap: 12px; }
 .faq-list details { border: 1px solid var(--line); border-radius: 18px; background-color: var(--card); transition: border-color .2s; }
-.faq-list details[open] { border-color: var(--spot-line); }
+.faq-list details[open] { border-color: var(--accent); }
 .faq-list summary { list-style: none; cursor: pointer; padding: 18px 56px 18px 22px; font-weight: 800; position: relative; }
 .faq-list summary::-webkit-details-marker { display: none; }
 .faq-list summary::after { content: '+'; position: absolute; right: 18px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--chip); color: var(--accent); font-size: 1.2rem; font-style: normal; transition: transform .25s; }

@@ -191,42 +191,6 @@
       .then(function () { btn.disabled = false; });
   });
 
-  /* ================= FARE IŞIĞI ================= */
-  // İmleci takip eden belirgin ışık + kartların içinde parlama (fare/touchpad olan cihazlarda)
-  var hasMouse = window.matchMedia('(any-hover: hover) and (any-pointer: fine)').matches;
-  if (hasMouse) {
-    var glow = document.createElement('div');
-    glow.className = 'cursor-light'; glow.setAttribute('aria-hidden', 'true');
-    glow.innerHTML = '<i></i>';
-    body.appendChild(glow);
-    var gx = -999, gy = -999, cx = -999, cy = -999, raf = 0;
-    var ease = reduceMotion ? 1 : 0.2;
-    function moveGlow() {
-      cx += (gx - cx) * ease; cy += (gy - cy) * ease;
-      glow.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0)';
-      raf = (Math.abs(gx - cx) + Math.abs(gy - cy) > 0.5) ? requestAnimationFrame(moveGlow) : 0;
-    }
-    document.querySelectorAll('.product, .service, .c-list a, .c-list div, .metric, .checks li, .tool-card, .faq-list details, .step-ico').forEach(function (el) {
-      el.classList.add('spot');
-    });
-    document.addEventListener('pointermove', function (e) {
-      if (e.pointerType === 'touch') return;
-      if (cx < -900) { cx = e.clientX; cy = e.clientY; }
-      gx = e.clientX; gy = e.clientY;
-      glow.classList.add('on');
-      if (!raf) raf = requestAnimationFrame(moveGlow);
-      var card = e.target.closest && e.target.closest('.spot, .agro-item');
-      if (card) {
-        var r = card.getBoundingClientRect();
-        card.style.setProperty('--x', (e.clientX - r.left) + 'px');
-        card.style.setProperty('--y', (e.clientY - r.top) + 'px');
-      }
-    }, { passive: true });
-    document.addEventListener('pointerdown', function () { glow.classList.add('press'); });
-    document.addEventListener('pointerup', function () { glow.classList.remove('press'); });
-    document.documentElement.addEventListener('mouseleave', function () { glow.classList.remove('on'); });
-  }
-
   /* ================= BAŞLAT ================= */
   document.getElementById('year').textContent = new Date().getFullYear();
   applyTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');

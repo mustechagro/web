@@ -8,7 +8,7 @@
 (function () {
   'use strict';
 
-  var OWM_API_KEY = ''; // ← OpenWeather API anahtarı
+  var OWM_API_KEY = '1115bf7a4a13d673a97419295495a114'; // ← OpenWeather API anahtarı
   var OWM = 'https://api.openweathermap.org';
   var DEFAULT_LOC = { name: 'Kayseri', lat: 38.7205, lon: 35.4826 };
   var HAS_WX = !!OWM_API_KEY;
@@ -111,12 +111,15 @@
   var data = null, loading = false;
   var loc = load('mt-loc') || DEFAULT_LOC;
 
-  if (!HAS_WX && wxSec) {
-    wxSec.remove(); wxSec = null;
+  // Anahtar yoksa ya da geçersizse hava kartını gizle, sadece hesaplayıcı kalsın
+  function hideWx() {
+    if (!wxSec) return;
+    wxSec.remove(); wxSec = null; HAS_WX = false; window.MT_WEATHER = false;
     var grid = document.querySelector('.tools-grid'); if (grid) grid.classList.add('single');
     document.querySelectorAll('[data-wx-only]').forEach(function (el) { el.hidden = true; });
     document.querySelectorAll('[data-calc-only]').forEach(function (el) { el.hidden = false; });
   }
+  if (!HAS_WX) hideWx();
 
   function owm(path, extra) {
     return fetch(OWM + path + '?' + extra + '&appid=' + OWM_API_KEY).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
@@ -159,7 +162,8 @@
     var q = 'lat=' + loc.lat + '&lon=' + loc.lon + '&units=metric&lang=' + (L() === 'en' ? 'en' : 'tr');
     Promise.all([owm('/data/2.5/weather', q), owm('/data/2.5/forecast', q)])
       .then(function (r) { data = build(r[0], r[1]); render(); calc(); })
-      .catch(function () {
+      .catch(function (e) {
+        if (e && e.message === '401') { hideWx(); if (typeof calc === 'function') calc(); return; }
         $('wxNow').innerHTML = '<div class="wx-loading">' + t('err') + ' <button type="button" class="link-btn" id="wxRetry">' + t('retry') + '</button></div>';
         $('wxAgro').innerHTML = ''; $('wxDays').innerHTML = '';
         $('wxRetry').addEventListener('click', fetchWeather);
