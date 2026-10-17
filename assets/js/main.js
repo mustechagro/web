@@ -82,7 +82,13 @@
                 theme: function () { return root.getAttribute('data-theme'); }, email: CONTACT_EMAIL };
 
   /* ================= MENÜ ================= */
-  function onScroll() { navbar.classList.toggle('scrolled', window.scrollY > 40); }
+  var progress = document.getElementById('progress'), toTop = document.getElementById('toTop');
+  function onScroll() {
+    var y = window.scrollY, max = document.documentElement.scrollHeight - window.innerHeight;
+    navbar.classList.toggle('scrolled', y > 40);
+    if (progress) progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0) + ')';
+    if (toTop) toTop.classList.toggle('show', y > window.innerHeight * 0.9);
+  }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
@@ -110,7 +116,7 @@
         if (en.isIntersecting) links.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id); });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['hero', 'about', 'process', 'products', 'services', 'contact'].forEach(function (id) {
+    ['hero', 'about', 'process', 'products', 'tools', 'services', 'faq', 'contact'].forEach(function (id) {
       var el = document.getElementById(id); if (el) secObs.observe(el);
     });
   }
@@ -186,32 +192,38 @@
   });
 
   /* ================= FARE IŞIĞI ================= */
-  // Sayfa genelinde imleci takip eden yumuşak ışık + kartların üzerinde parlama (yalnızca fareli cihazlarda)
-  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
+  // İmleci takip eden belirgin ışık + kartların içinde parlama (fare/touchpad olan cihazlarda)
+  var hasMouse = window.matchMedia('(any-hover: hover) and (any-pointer: fine)').matches;
+  if (hasMouse) {
     var glow = document.createElement('div');
     glow.className = 'cursor-light'; glow.setAttribute('aria-hidden', 'true');
+    glow.innerHTML = '<i></i>';
     body.appendChild(glow);
     var gx = -999, gy = -999, cx = -999, cy = -999, raf = 0;
+    var ease = reduceMotion ? 1 : 0.2;
     function moveGlow() {
-      cx += (gx - cx) * 0.18; cy += (gy - cy) * 0.18;
+      cx += (gx - cx) * ease; cy += (gy - cy) * ease;
       glow.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0)';
       raf = (Math.abs(gx - cx) + Math.abs(gy - cy) > 0.5) ? requestAnimationFrame(moveGlow) : 0;
     }
-    document.querySelectorAll('.product, .service, .c-list a, .c-list div, .metric, .p-feats, .checks li').forEach(function (el) {
-      if (!el.classList.contains('p-feats')) el.classList.add('spot');
+    document.querySelectorAll('.product, .service, .c-list a, .c-list div, .metric, .checks li, .tool-card, .faq-list details, .step-ico').forEach(function (el) {
+      el.classList.add('spot');
     });
     document.addEventListener('pointermove', function (e) {
+      if (e.pointerType === 'touch') return;
       if (cx < -900) { cx = e.clientX; cy = e.clientY; }
       gx = e.clientX; gy = e.clientY;
       glow.classList.add('on');
       if (!raf) raf = requestAnimationFrame(moveGlow);
-      var card = e.target.closest && e.target.closest('.spot');
+      var card = e.target.closest && e.target.closest('.spot, .agro-item');
       if (card) {
         var r = card.getBoundingClientRect();
         card.style.setProperty('--x', (e.clientX - r.left) + 'px');
         card.style.setProperty('--y', (e.clientY - r.top) + 'px');
       }
     }, { passive: true });
+    document.addEventListener('pointerdown', function () { glow.classList.add('press'); });
+    document.addEventListener('pointerup', function () { glow.classList.remove('press'); });
     document.documentElement.addEventListener('mouseleave', function () { glow.classList.remove('on'); });
   }
 

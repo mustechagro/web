@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mustech Agro | MUSTECH Akıllı Tarım Teknolojileri – Kayseri</title>
-  <meta name="description" content="Mustech Agro (MUSTECH): akıllı sulama, toprak analiz sensörleri, drone görüntüleme, hava durumu istasyonu ve tarla yönetim yazılımıyla çiftçilerin verimini artırır, maliyetini düşürür. Kayseri merkezli; kurulum, eğitim ve 7/24 teknik destek.">
+  <meta name="description" content="Mustech Agro (MUSTECH): akıllı sulama, toprak analiz sensörleri, frekanslı zararlı hayvan kovucu, hava durumu istasyonu ve tarla yönetim yazılımıyla çiftçilerin verimini artırır, maliyetini düşürür. Kayseri merkezli; kurulum, eğitim ve 7/24 teknik destek.">
   <link rel="canonical" href="https://mustechagro.com.tr/">
   <meta name="theme-color" content="#0e2416">
   <meta name="color-scheme" content="light dark">
@@ -39,11 +39,12 @@
 
   <link rel="preload" href="assets/fonts/montserrat-latin-wght-italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/montserrat-latin-ext-wght-italic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css?v=3">
-  <script src="assets/js/i18n.js?v=3" defer></script>
-  <script src="assets/js/main.js?v=3" defer></script>
-  <script src="assets/js/wheat.js?v=3" defer></script>
-  <script src="assets/js/bot.js?v=3" defer></script>
+  <link rel="stylesheet" href="assets/css/style.css?v=6">
+  <script src="assets/js/i18n.js?v=6" defer></script>
+  <script src="assets/js/main.js?v=6" defer></script>
+  <script src="assets/js/wheat.js?v=6" defer></script>
+  <script src="assets/js/tools.js?v=6" defer></script>
+  <script src="assets/js/bot.js?v=6" defer></script>
 
   <script type="application/ld+json">
   {
@@ -57,11 +58,11 @@
         "url": "https://mustechagro.com.tr/",
         "logo": "https://mustechagro.com.tr/assets/img/logo-512.png",
         "image": "https://mustechagro.com.tr/assets/img/og-image.jpg",
-        "description": "Kayseri merkezli akıllı tarım teknolojileri şirketi: akıllı sulama, toprak analiz sensörleri, drone görüntüleme, hava durumu istasyonu, tarla yönetim yazılımı ve gübre optimizasyonu.",
+        "description": "Kayseri merkezli akıllı tarım teknolojileri şirketi: akıllı sulama, toprak analiz sensörleri, frekanslı zararlı hayvan kovucu, hava durumu istasyonu, tarla yönetim yazılımı ve gübre optimizasyonu.",
         "email": "mustechagro@gmail.com",
         "address": { "@type": "PostalAddress", "addressLocality": "Kayseri", "addressCountry": "TR" },
         "areaServed": "TR",
-        "knowsAbout": ["Akıllı tarım", "Hassas tarım", "Akıllı sulama", "Toprak sensörü", "Tarım dronu", "Tarla yönetim yazılımı"]
+        "knowsAbout": ["Akıllı tarım", "Hassas tarım", "Akıllı sulama", "Toprak sensörü", "Zararlı hayvan kovucu", "Tarla yönetim yazılımı"]
       },
       {
         "@type": "WebSite",
@@ -78,6 +79,62 @@
   <!-- Google Search Console doğrulama kodu buraya eklenecek:
   <meta name="google-site-verification" content="KOD">
   -->
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Fiyatlar nasıl belirleniyor?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Fiyat; tarla büyüklüğüne, seçtiğiniz ürünlere ve kurulum ihtiyacına göre değişir. İletişim formundan bilgi verdiğinizde size özel teklif hazırlıyoruz."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Ürünleri ayrı ayrı alabilir miyim?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Evet. Ürünlerimiz birlikte ya da ayrı ayrı çalışabilir; ihtiyacınız olan çözümle başlayıp sistemi zamanla büyütebilirsiniz."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Kurulumu kim yapıyor?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Kurulumu uzman saha ekibimiz yapar: cihazları tarlanıza yerleştirir, yapılandırır ve devreye alır. Ardından kullanım eğitimi verir."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Bir arıza olursa ne oluyor?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "7/24 teknik destek veriyoruz: telefon, uzaktan bağlantı ve gerektiğinde saha ziyareti. Periyodik bakım paketlerimiz de var."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Hangi bölgelerde hizmet veriyorsunuz?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Merkezimiz Kayseri'dedir. Bölgenizi iletişim formunda belirtin; projenize göre değerlendirip dönüş yapalım."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Tarla araçlarındaki sonuçlar ne kadar güvenilir?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Hava durumu ve su ihtiyacı sonuçları tahmine ve genel kabul görmüş katsayılara dayanır; karar vermeye yardımcı olur. Tarlanıza özel ve kesin veri için sensör ve istasyonlarımızı öneririz."
+   }
+  }
+ ]
+}
+  </script>
 </head>
 <body>
 <a class="skip-link" href="#main" data-i18n="skip">İçeriğe geç</a>
@@ -86,7 +143,7 @@
   <defs>
     <symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7S6 9.1 6 13.7a6 6 0 0 0 12 0C18 9.1 12 2.7 12 2.7z"/><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"/></symbol>
     <symbol id="i-sprout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21h16"/><path d="M12 21v-9"/><path d="M12 12C12 8.5 9.5 6 5 6c0 3.5 2.5 6 7 6z"/><path d="M12 10c0-3.5 2.5-6 7-6 0 3.5-2.5 6-7 6z"/></symbol>
-    <symbol id="i-drone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="5" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M7 7l3 3M17 7l-3 3M7 17l3-3M17 17l-3-3"/><rect x="9.5" y="9.5" width="5" height="5" rx="1.2"/></symbol>
+    <symbol id="i-wave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4h3.5L11 18V6L6.5 10H3z"/><path d="M14.5 9.5a3.5 3.5 0 0 1 0 5"/><path d="M17 7a7 7 0 0 1 0 10"/><path d="M19.5 4.5a10.5 10.5 0 0 1 0 15"/></symbol>
     <symbol id="i-dash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2.5"/><path d="M7 14l3-3 3 2 4-4.5"/><path d="M9 21h6"/></symbol>
     <symbol id="i-cloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 18H8a5 5 0 1 1 1.1-9.9A6 6 0 0 1 20.4 11 3.5 3.5 0 0 1 17.5 18z"/><path d="M9 21l1-2M13 21l1-2"/></symbol>
     <symbol id="i-flask" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"/><path d="M10 3v6.2L4.6 18.4A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.4-2.6L14 9.2V3"/><path d="M7.2 15h9.6"/></symbol>
@@ -107,11 +164,18 @@
     <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01" stroke-width="3"/></symbol>
     <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
     <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></symbol>
+    <symbol id="i-loc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+    <symbol id="i-snow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2v20M4.9 7l14.2 10M4.9 17L19.1 7"/><path d="M9.5 3.5L12 6l2.5-2.5M9.5 20.5L12 18l2.5 2.5"/></symbol>
+    <symbol id="i-calc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19" rx="2.5"/><path d="M8 7h8M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
   </defs>
 </svg>
 
 <!-- ===== NAVBAR ===== -->
 <header id="navbar">
+  <div class="progress" id="progress" aria-hidden="true"></div>
   <div class="wrap">
     <a href="#hero" class="brand" aria-label="MUSTECH">
       <img src="assets/img/logo.png" width="48" height="48" alt="">
@@ -126,14 +190,15 @@
           <div class="dropdown-menu">
             <a href="#urun-sulama"><span class="dd-ico"><svg><use href="#i-drop"/></svg></span><span data-i18n="p1.name">Akıllı Sulama Sistemi</span></a>
             <a href="#urun-toprak"><span class="dd-ico"><svg><use href="#i-sprout"/></svg></span><span data-i18n="p2.name">Toprak Analiz Sensörü</span></a>
-            <a href="#urun-drone"><span class="dd-ico"><svg><use href="#i-drone"/></svg></span><span data-i18n="p3.name">Drone Görüntüleme Modülü</span></a>
+            <a href="#urun-kovucu"><span class="dd-ico"><svg><use href="#i-wave"/></svg></span><span data-i18n="p3.name">Frekanslı Zararlı Hayvan Kovucu</span></a>
             <a href="#urun-yazilim"><span class="dd-ico"><svg><use href="#i-dash"/></svg></span><span data-i18n="p4.name">Tarla Yönetim Yazılımı</span></a>
             <a href="#urun-hava"><span class="dd-ico"><svg><use href="#i-cloud"/></svg></span><span data-i18n="p5.name">Hava Durumu İstasyonu</span></a>
             <a href="#urun-gubre"><span class="dd-ico"><svg><use href="#i-flask"/></svg></span><span data-i18n="p6.name">Gübre Optimizasyon Platformu</span></a>
           </div>
         </li>
-        <li><a href="#process" data-i18n="nav.process">Nasıl Çalışır</a></li>
+        <li><a href="#tools"><span data-i18n="nav.tools">Tarla Araçları</span> <em class="nav-badge" data-i18n="nav.free">Ücretsiz</em></a></li>
         <li><a href="#services" data-i18n="nav.services">Hizmetler</a></li>
+        <li><a href="#faq" data-i18n="nav.faq">SSS</a></li>
         <li><a href="#contact" class="nav-cta" data-i18n="nav.contact">İletişim</a></li>
       </ul>
     </nav>
@@ -222,7 +287,7 @@
       <p class="lead" data-i18n="about.lead">Mustech Agro (MUSTECH) olarak Türkiye'nin tarım sektörünü dijital dönüşüme taşımak için kurulduk.</p>
       <p data-i18n="about.p">Donanım, yazılım ve sahada destek hizmetlerini tek çatı altında birleştiren bütünleşik çözümlerimizle çiftçilerin kararlarını veriye dayandırmalarını sağlıyoruz.</p>
       <ul class="checks">
-        <li><span class="ci"><svg><use href="#i-chip"/></svg></span><div><b data-i18n="about.c1t">Akıllı donanım</b><span data-i18n="about.c1d">Tarlada çalışan sensörler, istasyonlar ve görüntüleme modülleri.</span></div></li>
+        <li><span class="ci"><svg><use href="#i-chip"/></svg></span><div><b data-i18n="about.c1t">Akıllı donanım</b><span data-i18n="about.c1d">Tarlada çalışan sensörler, istasyonlar ve koruma cihazları.</span></div></li>
         <li><span class="ci"><svg><use href="#i-brain"/></svg></span><div><b data-i18n="about.c2t">Yapay zeka destekli yazılım</b><span data-i18n="about.c2d">Verileri anlamlı önerilere dönüştüren analiz platformu.</span></div></li>
         <li><span class="ci"><svg><use href="#i-tractor"/></svg></span><div><b data-i18n="about.c3t">Sahada uzman ekip</b><span data-i18n="about.c3d">Kurulum, eğitim ve bakımda yanınızda.</span></div></li>
       </ul>
@@ -271,12 +336,12 @@
         <ul class="p-feats" data-i18n-html="p2.feats"><li>pH</li><li>Nem</li><li>Sıcaklık</li><li>Besin değerleri</li></ul>
         <a href="#contact" class="p-link" data-product="Toprak Analiz Sensörü"><span data-i18n="prod.more">Bilgi alın</span> <svg><use href="#i-arrow"/></svg></a>
       </article>
-      <article class="product reveal" id="urun-drone" style="--d:.16s">
-        <div class="p-top"><span class="p-ico"><svg><use href="#i-drone"/></svg></span><span class="tag" data-i18n="p3.tag">Görüntüleme</span></div>
-        <h3 data-i18n="p3.name">Drone Görüntüleme Modülü</h3>
-        <p data-i18n="p3.desc">Multispektral kamera ile tarla sağlığını haritalayan yapay zeka destekli görüntüleme platformu.</p>
-        <ul class="p-feats" data-i18n-html="p3.feats"><li>Multispektral</li><li>Bitki sağlığı haritası</li></ul>
-        <a href="#contact" class="p-link" data-product="Drone Görüntüleme Modülü"><span data-i18n="prod.more">Bilgi alın</span> <svg><use href="#i-arrow"/></svg></a>
+      <article class="product reveal" id="urun-kovucu" style="--d:.16s">
+        <div class="p-top"><span class="p-ico"><svg><use href="#i-wave"/></svg></span><span class="tag" data-i18n="p3.tag">Koruma</span></div>
+        <h3 data-i18n="p3.name">Frekanslı Zararlı Hayvan Kovucu</h3>
+        <p data-i18n="p3.desc">Zararlı hayvanları özel ses frekanslarıyla tarladan uzak tutan, kimyasal kullanmadan ürününüzü koruyan kovucu sistem.</p>
+        <ul class="p-feats" data-i18n-html="p3.feats"><li>Frekans tabanlı</li><li>Kimyasal kullanmaz</li><li>Ürün kaybını azaltır</li></ul>
+        <a href="#contact" class="p-link" data-product="Frekanslı Zararlı Hayvan Kovucu"><span data-i18n="prod.more">Bilgi alın</span> <svg><use href="#i-arrow"/></svg></a>
       </article>
       <article class="product reveal" id="urun-yazilim">
         <div class="p-top"><span class="p-ico"><svg><use href="#i-dash"/></svg></span><span class="tag" data-i18n="p4.tag">Yazılım</span></div>
@@ -303,6 +368,83 @@
   </div>
 </section>
 
+<!-- ===== TARLA ARAÇLARI ===== -->
+<section id="tools">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="label" data-i18n="tools.label">Ücretsiz Tarla Araçları</p>
+      <h2 class="h2" data-wx-only data-i18n-html="tools.title">Tarlanız için <em>bugün</em> ne yapmalı?</h2>
+      <h2 class="h2" data-calc-only hidden data-i18n-html="tools.titleCalc">Tarlanızın <em>su ihtiyacını</em> hesaplayın</h2>
+      <p class="lead" data-wx-only data-i18n="tools.lead">Bulunduğunuz yerin hava tahminine göre ilaçlama, don, sulama ve hastalık riskini görün; ürününüzün su ihtiyacını hesaplayın.</p>
+      <p class="lead" data-calc-only hidden data-i18n="tools.leadCalc">Ürününüzü, gelişme dönemini, alanınızı ve sulama yönteminizi seçin; haftalık sulama suyu ihtiyacınızı ve damla sulamayla ne kadar tasarruf edebileceğinizi görün.</p>
+    </div>
+
+    <div class="tools-grid">
+      <!-- Hava durumu + tarım göstergeleri -->
+      <div class="tool-card wx reveal" id="wx">
+        <div class="wx-top">
+          <div class="wx-place">
+            <small data-i18n="wx.location">Konum</small>
+            <b id="wxPlace">Kayseri</b>
+          </div>
+          <form class="wx-search" id="wxSearch" autocomplete="off" role="search">
+            <input id="wxQuery" type="search" data-i18n-ph="wx.searchPh" placeholder="İl / ilçe ara..." aria-label="Konum ara">
+            <button type="submit" data-i18n-aria="wx.search" aria-label="Ara"><svg><use href="#i-search"/></svg></button>
+            <button type="button" id="wxGeo" class="wx-geo" data-i18n-aria="wx.geo" aria-label="Konumumu kullan"><svg><use href="#i-loc"/></svg></button>
+            <div class="wx-results" id="wxResults" hidden></div>
+          </form>
+        </div>
+
+        <div class="wx-now" id="wxNow">
+          <div class="wx-loading" data-i18n="wx.loading">Hava durumu yükleniyor...</div>
+        </div>
+
+        <div class="agro" id="wxAgro" aria-live="polite"></div>
+        <div class="days" id="wxDays"></div>
+        <p class="wx-credit"><span data-i18n="wx.note">Tahmine dayalı genel bilgilerdir; uygulamadan önce ürün etiketine ve uzman görüşüne başvurun.</span> · <span data-i18n="wx.credit">Hava verisi:</span> <a href="https://openweathermap.org/" target="_blank" rel="noopener">OpenWeather</a></p>
+      </div>
+
+      <!-- Su ihtiyacı hesaplayıcı -->
+      <div class="tool-card calc reveal" id="calc" style="--d:.1s">
+        <div class="calc-head">
+          <span class="p-ico"><svg><use href="#i-calc"/></svg></span>
+          <div><h3 data-i18n="calc.title">Sulama Suyu Hesaplayıcı</h3><small data-i18n="calc.sub">FAO-56 yöntemiyle yaklaşık hesap</small></div>
+        </div>
+        <div class="calc-form">
+          <div class="field2"><label for="cCrop" data-i18n="calc.crop">Ürün</label>
+            <select id="cCrop">
+              <option value="wheat" data-i18n="crop.wheat">Buğday</option>
+              <option value="barley" data-i18n="crop.barley">Arpa</option>
+              <option value="maize" data-i18n="crop.maize">Mısır</option>
+              <option value="beet" data-i18n="crop.beet">Şeker pancarı</option>
+              <option value="sunflower" data-i18n="crop.sunflower">Ayçiçeği</option>
+              <option value="potato" data-i18n="crop.potato">Patates</option>
+              <option value="tomato" data-i18n="crop.tomato">Domates</option>
+              <option value="alfalfa" data-i18n="crop.alfalfa">Yonca</option>
+            </select></div>
+          <div class="field2"><label for="cStage" data-i18n="calc.stage">Gelişme dönemi</label>
+            <select id="cStage">
+              <option value="ini" data-i18n="stage.ini">Başlangıç</option>
+              <option value="dev" data-i18n="stage.dev">Gelişme</option>
+              <option value="mid" selected data-i18n="stage.mid">Orta dönem</option>
+              <option value="end" data-i18n="stage.end">Olgunlaşma</option>
+            </select></div>
+          <div class="field2"><label for="cArea" data-i18n="calc.area">Alan (dekar)</label><input id="cArea" type="number" min="0.1" step="0.1" value="10" inputmode="decimal"></div>
+          <div class="field2"><label for="cMethod" data-i18n="calc.method">Sulama yöntemi</label>
+            <select id="cMethod">
+              <option value="0.5" data-i18n="m.surface">Salma (karık)</option>
+              <option value="0.75" selected data-i18n="m.sprinkler">Yağmurlama</option>
+              <option value="0.9" data-i18n="m.drip">Damla</option>
+            </select></div>
+          <div class="field2 wide"><label for="cEt0"><span data-i18n="calc.et0">Günlük buharlaşma (ET₀, mm)</span> <small id="cEt0Src"></small></label><input id="cEt0" type="number" min="0" max="15" step="0.1" value="5" inputmode="decimal"></div>
+        </div>
+        <div class="calc-out" id="calcOut" aria-live="polite"></div>
+        <a href="#contact" class="btn btn-primary calc-cta" data-product="Akıllı Sulama Sistemi"><span data-i18n="calc.cta">Akıllı sulama için teklif alın</span> <svg><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== HİZMETLER ===== -->
 <section id="services">
   <div class="wrap">
@@ -318,6 +460,25 @@
       <div class="service"><span class="num">04</span><h3 data-i18n="serv.s4t">Veri Analizi ve Raporlama</h3><p data-i18n="serv.s4d">Toprak, su ve iklim verilerini yorumlayarak karar destek raporları hazırlıyoruz.</p></div>
       <div class="service"><span class="num">05</span><h3 data-i18n="serv.s5t">Bakım ve Periyodik Servis</h3><p data-i18n="serv.s5d">Sensör kalibrasyonu, yazılım güncellemeleri ve donanım bakım paketleri.</p></div>
       <div class="service"><span class="num">06</span><h3 data-i18n="serv.s6t">Özel Proje Geliştirme</h3><p data-i18n="serv.s6d">İşletmenizin özel ihtiyaçlarına göre tasarlanmış çözümler ve entegrasyon hizmetleri.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SSS ===== -->
+<section id="faq">
+  <div class="wrap faq-grid">
+    <div class="section-head reveal">
+      <p class="label" data-i18n="faq.label">Sıkça Sorulan Sorular</p>
+      <h2 class="h2" data-i18n-html="faq.title">Aklınıza takılan <em>sorular</em></h2>
+      <p class="lead" data-i18n="faq.lead">Cevabını bulamadığınız bir soru mu var? Sağ alttaki asistana sorun ya da bize yazın.</p>
+    </div>
+    <div class="faq-list reveal" style="--d:.1s">
+      <details><summary data-i18n="faq.q1">Fiyatlar nasıl belirleniyor?</summary><p data-i18n="faq.a1">Fiyat; tarla büyüklüğüne, seçtiğiniz ürünlere ve kurulum ihtiyacına göre değişir. İletişim formundan bilgi verdiğinizde size özel teklif hazırlıyoruz.</p></details>
+      <details><summary data-i18n="faq.q2">Ürünleri ayrı ayrı alabilir miyim?</summary><p data-i18n="faq.a2">Evet. Ürünlerimiz birlikte ya da ayrı ayrı çalışabilir; ihtiyacınız olan çözümle başlayıp sistemi zamanla büyütebilirsiniz.</p></details>
+      <details><summary data-i18n="faq.q3">Kurulumu kim yapıyor?</summary><p data-i18n="faq.a3">Kurulumu uzman saha ekibimiz yapar: cihazları tarlanıza yerleştirir, yapılandırır ve devreye alır. Ardından kullanım eğitimi verir.</p></details>
+      <details><summary data-i18n="faq.q4">Bir arıza olursa ne oluyor?</summary><p data-i18n="faq.a4">7/24 teknik destek veriyoruz: telefon, uzaktan bağlantı ve gerektiğinde saha ziyareti. Periyodik bakım paketlerimiz de var.</p></details>
+      <details><summary data-i18n="faq.q5">Hangi bölgelerde hizmet veriyorsunuz?</summary><p data-i18n="faq.a5">Merkezimiz Kayseri'dedir. Bölgenizi iletişim formunda belirtin; projenize göre değerlendirip dönüş yapalım.</p></details>
+      <details><summary data-i18n="faq.q6">Tarla araçlarındaki sonuçlar ne kadar güvenilir?</summary><p data-i18n="faq.a6">Hava durumu ve su ihtiyacı sonuçları tahmine ve genel kabul görmüş katsayılara dayanır; karar vermeye yardımcı olur. Tarlanıza özel ve kesin veri için sensör ve istasyonlarımızı öneririz.</p></details>
     </div>
   </div>
 </section>
@@ -366,7 +527,7 @@
           <option value="Genel bilgi" data-i18n="t.general">Genel bilgi</option>
           <option value="Akıllı Sulama Sistemi" data-i18n="p1.name">Akıllı Sulama Sistemi</option>
           <option value="Toprak Analiz Sensörü" data-i18n="p2.name">Toprak Analiz Sensörü</option>
-          <option value="Drone Görüntüleme Modülü" data-i18n="p3.name">Drone Görüntüleme Modülü</option>
+          <option value="Frekanslı Zararlı Hayvan Kovucu" data-i18n="p3.name">Frekanslı Zararlı Hayvan Kovucu</option>
           <option value="Tarla Yönetim Yazılımı" data-i18n="p4.name">Tarla Yönetim Yazılımı</option>
           <option value="Hava Durumu İstasyonu" data-i18n="p5.name">Hava Durumu İstasyonu</option>
           <option value="Gübre Optimizasyon Platformu" data-i18n="p6.name">Gübre Optimizasyon Platformu</option>
@@ -397,11 +558,11 @@
       </div>
       <div>
         <h4 data-i18n="footer.corp">Kurumsal</h4>
-        <ul><li><a href="#about" data-i18n="nav.about">Hakkımızda</a></li><li><a href="#process" data-i18n="nav.process">Nasıl Çalışır</a></li><li><a href="#services" data-i18n="nav.services">Hizmetler</a></li><li><a href="#contact" data-i18n="nav.contact">İletişim</a></li></ul>
+        <ul><li><a href="#about" data-i18n="nav.about">Hakkımızda</a></li><li><a href="#process" data-i18n="nav.process">Nasıl Çalışır</a></li><li><a href="#tools" data-i18n="nav.tools">Tarla Araçları</a></li><li><a href="#services" data-i18n="nav.services">Hizmetler</a></li><li><a href="#faq" data-i18n="nav.faq">SSS</a></li><li><a href="#contact" data-i18n="nav.contact">İletişim</a></li></ul>
       </div>
       <div>
         <h4 data-i18n="nav.products">Ürünler</h4>
-        <ul><li><a href="#urun-sulama" data-i18n="p1.name">Akıllı Sulama Sistemi</a></li><li><a href="#urun-toprak" data-i18n="p2.name">Toprak Analiz Sensörü</a></li><li><a href="#urun-drone" data-i18n="p3.name">Drone Görüntüleme Modülü</a></li><li><a href="#urun-yazilim" data-i18n="p4.name">Tarla Yönetim Yazılımı</a></li></ul>
+        <ul><li><a href="#urun-sulama" data-i18n="p1.name">Akıllı Sulama Sistemi</a></li><li><a href="#urun-toprak" data-i18n="p2.name">Toprak Analiz Sensörü</a></li><li><a href="#urun-kovucu" data-i18n="p3.name">Frekanslı Zararlı Hayvan Kovucu</a></li><li><a href="#urun-yazilim" data-i18n="p4.name">Tarla Yönetim Yazılımı</a></li></ul>
       </div>
       <div>
         <h4 data-i18n="nav.contact">İletişim</h4>
@@ -414,6 +575,8 @@
     </div>
   </div>
 </footer>
+
+<a href="#hero" class="to-top-btn" id="toTop" data-i18n-aria="footer.top" aria-label="Başa dön"><svg><use href="#i-up"/></svg></a>
 
 <!-- ===== ASİSTAN (BOT) ===== -->
 <div class="bot" id="bot">

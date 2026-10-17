@@ -17,8 +17,8 @@
       tr: 'Görüşmek üzere! Bol bereketli günler dileriz. 🌾', en: 'See you! Wishing you bountiful harvests. 🌾' },
 
     { id: 'products', kw: ['urun', 'urunler', 'neler sat', 'ne sat', 'cozum', 'katalog', 'product', 'products', 'solution', 'what do you sell', 'what do you offer', 'offer'],
-      tr: 'Altı ürünümüz var:<br>• Akıllı Sulama Sistemi<br>• Toprak Analiz Sensörü<br>• Drone Görüntüleme Modülü<br>• Tarla Yönetim Yazılımı<br>• Hava Durumu İstasyonu<br>• Gübre Optimizasyon Platformu<br>Hangisi hakkında bilgi almak istersiniz?',
-      en: 'We offer six products:<br>• Smart Irrigation System<br>• Soil Analysis Sensor<br>• Drone Imaging Module<br>• Farm Management Software<br>• Weather Station<br>• Fertilizer Optimization Platform<br>Which one would you like to know more about?',
+      tr: 'Altı ürünümüz var:<br>• Akıllı Sulama Sistemi<br>• Toprak Analiz Sensörü<br>• Frekanslı Zararlı Hayvan Kovucu<br>• Tarla Yönetim Yazılımı<br>• Hava Durumu İstasyonu<br>• Gübre Optimizasyon Platformu<br>Hangisi hakkında bilgi almak istersiniz?',
+      en: 'We offer six products:<br>• Smart Irrigation System<br>• Soil Analysis Sensor<br>• Frequency Pest Animal Repeller<br>• Farm Management Software<br>• Weather Station<br>• Fertilizer Optimization Platform<br>Which one would you like to know more about?',
       go: { href: '#products', tr: 'Ürünleri gör', en: 'See products' },
       chips: ['p1', 'p2', 'p3', 'p4', 'p5', 'p6'] },
 
@@ -30,10 +30,10 @@
       tr: '<b>Toprak Analiz Sensörü</b>, kablosuz bir sensör ağıdır. pH, nem, sıcaklık ve besin değerlerini gerçek zamanlı ölçer; verileri yazılımımıza aktarır.',
       en: 'The <b>Soil Analysis Sensor</b> is a wireless sensor network that measures pH, moisture, temperature and nutrient levels in real time and sends the data to our software.',
       go: { href: '#urun-toprak', tr: 'Ürüne git', en: 'View product' }, topic: 'Toprak Analiz Sensörü' },
-    { id: 'p3', kw: ['drone', 'dron', 'iha', 'goruntu', 'kamera', 'multispektral', 'harita', 'ndvi', 'imaging', 'camera', 'multispectral', 'map', 'aerial'],
-      tr: '<b>Drone Görüntüleme Modülü</b>, multispektral kamera ile tarlanızın bitki sağlığı haritasını çıkarır. Yapay zeka, sorunlu bölgeleri erkenden tespit etmenize yardımcı olur.',
-      en: 'The <b>Drone Imaging Module</b> maps your field’s crop health with a multispectral camera. AI helps you spot problem areas early.',
-      go: { href: '#urun-drone', tr: 'Ürüne git', en: 'View product' }, topic: 'Drone Görüntüleme Modülü' },
+    { id: 'p3', kw: ['kovucu', 'kovmak', 'kovma', 'hayvan', 'zararli hayvan', 'yaban domuzu', 'domuz', 'kemirgen', 'fare', 'sican', 'kus', 'tavsan', 'ayi', 'frekans', 'ultrasonik', 'ses dalga', 'repeller', 'repel', 'pest', 'animal', 'boar', 'rodent', 'bird', 'frequency', 'ultrasonic'],
+      tr: '<b>Frekanslı Zararlı Hayvan Kovucu</b>, zararlı hayvanları özel ses frekanslarıyla tarlanızdan uzak tutar. Kimyasal kullanmadan ürününüzü korumaya ve ürün kaybını azaltmaya yardımcı olur. Tarlanıza uygun kurulum için bize yazabilirsiniz.',
+      en: 'The <b>Frequency Pest Animal Repeller</b> keeps pest animals away from your field with special sound frequencies, helping protect your crop and reduce losses without chemicals. Write to us for a setup suited to your field.',
+      go: { href: '#urun-kovucu', tr: 'Ürüne git', en: 'View product' }, topic: 'Frekanslı Zararlı Hayvan Kovucu' },
     { id: 'p4', kw: ['yazilim', 'uygulama', 'program', 'panel', 'tarla yonetim', 'hasat', 'ekim', 'maliyet takip', 'software', 'app', 'platform', 'dashboard', 'farm management', 'harvest', 'planting'],
       tr: '<b>Tarla Yönetim Yazılımı</b> ile tüm operasyonlarınızı tek ekrandan yönetirsiniz: ekim planı, hasat takvimi ve maliyet takibi. Sensör ve istasyon verileri de burada toplanır.',
       en: 'With the <b>Farm Management Software</b> you manage everything from one screen: planting plans, harvest calendar and cost tracking. Sensor and station data are collected here too.',
@@ -47,6 +47,12 @@
       en: 'The <b>Fertilizer Optimization Platform</b> is an AI engine that calculates the right fertilizer dose from soil analysis and crop needs, reducing overuse and cost.',
       go: { href: '#urun-gubre', tr: 'Ürüne git', en: 'View product' }, topic: 'Gübre Optimizasyon Platformu' },
 
+    { id: 'tools', kw: ['hava durumu nasil', 'bugun hava', 'yarin hava', 'hava tahmini', 'tahmin', 'ilaclama', 'ilac atmak', 'ilaclama zamani', 'don riski', 'don olacak', 'su ihtiyaci', 'ne kadar su', 'kac ton su', 'hesapla', 'hesaplayici', 'evapotranspirasyon', 'et0', 'forecast', 'weather today', 'spraying', 'spray', 'frost risk', 'water need', 'how much water', 'calculator', 'calculate'],
+      tr: 'Sitemizde ücretsiz <b>Tarla Araçları</b> var: bulunduğunuz yerin hava tahminine göre <b>ilaçlama uygunluğu, don riski, sulama ihtiyacı ve mantar hastalığı riski</b> gösteriliyor. Ayrıca ürününüze ve alanınıza göre <b>sulama suyu hesaplayıcı</b> ile haftalık su ihtiyacınızı görebilirsiniz.',
+      en: 'Our site has free <b>Field Tools</b>: based on your local forecast they show <b>spraying suitability, frost risk, irrigation need and fungal disease risk</b>. There’s also an <b>irrigation water calculator</b> for your crop and area.',
+      trNoWx: 'Sitemizdeki ücretsiz <b>Sulama Suyu Hesaplayıcı</b> ile ürününüze, gelişme dönemine, alanınıza ve sulama yönteminize göre haftalık su ihtiyacınızı ve damla sulamayla ne kadar tasarruf edebileceğinizi görebilirsiniz.',
+      enNoWx: 'Our free <b>Irrigation Water Calculator</b> shows your weekly water needs by crop, growth stage, area and irrigation method, and how much drip irrigation can save.',
+      go: { href: '#tools', tr: 'Tarla Araçlarına git', en: 'Open Field Tools' } },
     { id: 'price', kw: ['fiyat', 'ucret', 'kac para', 'kaca', 'kac tl', 'maliyet', 'teklif', 'pahali', 'odeme', 'taksit', 'price', 'pricing', 'cost', 'quote', 'how much', 'payment'],
       tr: 'Fiyatlar; tarla büyüklüğüne, ürün tipine ve kurulum ihtiyacına göre değiştiği için size özel teklif hazırlıyoruz. İletişim formundan tarlanızın büyüklüğünü ve ilgilendiğiniz ürünü yazmanız yeterli.',
       en: 'Pricing depends on field size, product type and installation needs, so we prepare a custom quote. Just send us your field size and the product you’re interested in via the contact form.',
@@ -105,13 +111,13 @@
     tr: { welcome: 'Merhaba! 👋 Ben MUSTECH Asistan. Size nasıl yardımcı olabilirim?',
           fallback: 'Bu soruyu tam anlayamadım. 🤔 Ürünlerimiz, fiyat teklifi, kurulum, destek veya iletişim hakkında sorabilirsiniz. Dilerseniz sorunuzu doğrudan ekibimize de iletebilirsiniz.',
           fallbackBtn: 'Ekibe sor',
-          chips: [['products', 'Ürünleriniz neler?'], ['price', 'Fiyat teklifi'], ['install', 'Kurulum nasıl?'], ['support', 'Teknik destek'], ['contact', 'İletişim']],
-          names: { p1: 'Akıllı Sulama', p2: 'Toprak Sensörü', p3: 'Drone', p4: 'Yazılım', p5: 'Hava İstasyonu', p6: 'Gübre Platformu' } },
+          chips: [['products', 'Ürünleriniz neler?'], ['tools', 'Su ihtiyacı hesabı'], ['price', 'Fiyat teklifi'], ['install', 'Kurulum nasıl?'], ['support', 'Teknik destek'], ['contact', 'İletişim']],
+          names: { p1: 'Akıllı Sulama', p2: 'Toprak Sensörü', p3: 'Hayvan Kovucu', p4: 'Yazılım', p5: 'Hava İstasyonu', p6: 'Gübre Platformu' } },
     en: { welcome: 'Hello! 👋 I’m the MUSTECH Assistant. How can I help you?',
           fallback: 'I didn’t quite get that. 🤔 You can ask about our products, quotes, installation, support or contact details. You can also send your question straight to our team.',
           fallbackBtn: 'Ask the team',
-          chips: [['products', 'What are your products?'], ['price', 'Get a quote'], ['install', 'How is installation?'], ['support', 'Technical support'], ['contact', 'Contact']],
-          names: { p1: 'Smart Irrigation', p2: 'Soil Sensor', p3: 'Drone', p4: 'Software', p5: 'Weather Station', p6: 'Fertilizer Platform' } }
+          chips: [['products', 'What are your products?'], ['tools', 'Water need calculator'], ['price', 'Get a quote'], ['install', 'How is installation?'], ['support', 'Technical support'], ['contact', 'Contact']],
+          names: { p1: 'Smart Irrigation', p2: 'Soil Sensor', p3: 'Animal Repeller', p4: 'Software', p5: 'Weather Station', p6: 'Fertilizer Platform' } }
   };
 
   function norm(s) {
@@ -189,10 +195,11 @@
   function reply(text, forcedId) {
     var it = forcedId ? INTENTS.filter(function (x) { return x.id === forcedId; })[0] : match(text);
     var lang = L(), t = typing();
+    var txt = it ? ((it.id === 'tools' && !window.MT_WEATHER && it[lang + 'NoWx']) || it[lang]) : '';
     setTimeout(function () {
       t.remove();
       if (it) {
-        add(it[lang], 'bot', it.go ? linkBtn(it.go, it.topic) : (it.topic ? linkBtn({ href: '#contact', tr: 'Bilgi talep et', en: 'Request info' }, it.topic) : null));
+        add(txt, 'bot', it.go ? linkBtn(it.go, it.topic) : (it.topic ? linkBtn({ href: '#contact', tr: 'Bilgi talep et', en: 'Request info' }, it.topic) : null));
         if (it.chips) renderChips(it.chips.map(function (id) { return [id]; })); else defaultChips();
       } else {
         add(UI[lang].fallback, 'bot', linkBtn({ href: '#contact', tr: UI.tr.fallbackBtn, en: UI.en.fallbackBtn }));
