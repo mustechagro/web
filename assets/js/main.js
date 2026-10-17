@@ -185,6 +185,36 @@
       .then(function () { btn.disabled = false; });
   });
 
+  /* ================= FARE IŞIĞI ================= */
+  // Sayfa genelinde imleci takip eden yumuşak ışık + kartların üzerinde parlama (yalnızca fareli cihazlarda)
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion) {
+    var glow = document.createElement('div');
+    glow.className = 'cursor-light'; glow.setAttribute('aria-hidden', 'true');
+    body.appendChild(glow);
+    var gx = -999, gy = -999, cx = -999, cy = -999, raf = 0;
+    function moveGlow() {
+      cx += (gx - cx) * 0.18; cy += (gy - cy) * 0.18;
+      glow.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0)';
+      raf = (Math.abs(gx - cx) + Math.abs(gy - cy) > 0.5) ? requestAnimationFrame(moveGlow) : 0;
+    }
+    document.querySelectorAll('.product, .service, .c-list a, .c-list div, .metric, .p-feats, .checks li').forEach(function (el) {
+      if (!el.classList.contains('p-feats')) el.classList.add('spot');
+    });
+    document.addEventListener('pointermove', function (e) {
+      if (cx < -900) { cx = e.clientX; cy = e.clientY; }
+      gx = e.clientX; gy = e.clientY;
+      glow.classList.add('on');
+      if (!raf) raf = requestAnimationFrame(moveGlow);
+      var card = e.target.closest && e.target.closest('.spot');
+      if (card) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--x', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--y', (e.clientY - r.top) + 'px');
+      }
+    }, { passive: true });
+    document.documentElement.addEventListener('mouseleave', function () { glow.classList.remove('on'); });
+  }
+
   /* ================= BAŞLAT ================= */
   document.getElementById('year').textContent = new Date().getFullYear();
   applyTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');

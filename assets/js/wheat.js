@@ -60,6 +60,7 @@
   function Field(canvas, mode) {
     this.c = canvas; this.ctx = canvas.getContext('2d');
     this.mode = mode; this.visible = true; this.t0 = rnd(0, 100);
+    this.m = { x: -999, y: -999, sx: -999, sy: -999, on: false, k: 0 };
     this.build();
   }
 
@@ -146,6 +147,26 @@
       ctx.lineTo(W, H); ctx.fill();
     }
 
+    // fare ışığı: imlecin arkasında yumuşak bir aydınlanma, buğdaylar imleçten kaçar
+    var m = this.m;
+    if (m.sx < -900) { m.sx = m.x; m.sy = m.y; }
+    m.sx += (m.x - m.sx) * 0.14; m.sy += (m.y - m.sy) * 0.14;
+    m.k += ((m.on ? 1 : 0) - m.k) * 0.07;
+    if (this.mode === 'hero' && m.k > 0.01) {
+      var R = Math.max(220, Math.min(W, H) * 0.38);
+      var gl = ctx.createRadialGradient(m.sx, m.sy, 0, m.sx, m.sy, R);
+      if (P.stars) {
+        gl.addColorStop(0, 'rgba(190,240,130,' + (0.3 * m.k) + ')');
+        gl.addColorStop(0.4, 'rgba(80,170,220,' + (0.12 * m.k) + ')');
+      } else {
+        gl.addColorStop(0, 'rgba(255,250,215,' + (0.75 * m.k) + ')');
+        gl.addColorStop(0.45, 'rgba(255,236,170,' + (0.25 * m.k) + ')');
+      }
+      gl.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = gl; ctx.fillRect(m.sx - R, m.sy - R, R * 2, R * 2);
+    }
+    var push = this.mode === 'hero' && m.k > 0.01;
+
     var groundY = H + 4;
     for (var li = 0; li < this.layers.length; li++) {
       var L = this.layers[li], cfg = L.cfg, head = L.head;
@@ -156,6 +177,13 @@
       for (var k = 0; k < L.stalks.length; k++) {
         var p = L.stalks[k];
         var a = p.lean + this.wind(p.x, t + p.ph * 0.04) * cfg.sway * 0.3;
+        if (push) {
+          var dx = p.x - m.sx;
+          if (dx > -180 && dx < 180) {
+            var fy = 1 - Math.abs(m.sy - (groundY - p.h * 0.75)) / 240;
+            if (fy > 0) a += (dx < 0 ? -1 : 1) * Math.exp(-(dx * dx) / 5200) * 0.6 * fy * m.k * cfg.sway;
+          }
+        }
         var sa = Math.sin(a), ca = Math.cos(a);
         var tx = p.x + sa * p.h, ty = groundY - ca * p.h;
         var cx = p.x + sa * p.h * 0.18, cy = groundY - p.h * 0.55;
@@ -193,6 +221,16 @@
     var band = document.getElementById('footerWheat');
     if (hero) fields.push(new Field(hero, 'hero'));
     if (band) fields.push(new Field(band, 'band'));
+
+    var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (fine && !reduce && fields[0] && fields[0].mode === 'hero') {
+      var hf = fields[0], sec = document.getElementById('hero');
+      sec.addEventListener('pointermove', function (e) {
+        var r = hf.c.getBoundingClientRect();
+        hf.m.x = e.clientX - r.left; hf.m.y = e.clientY - r.top; hf.m.on = true;
+      });
+      sec.addEventListener('pointerleave', function () { hf.m.on = false; });
+    }
 
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (es) {

@@ -349,7 +349,7 @@ section { padding: 120px 0; }
 #services { background: var(--bg-alt); }
 .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .service { padding: 38px 32px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); position: relative; transition: background .3s; }
-.service:hover { background: var(--card-2); }
+.service:hover { background-color: var(--card-2); }
 .service .num { font-size: .85rem; font-weight: 900; letter-spacing: .1em; background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .service h3 { font-size: 1.15rem; font-weight: 800; margin: 12px 0 10px; }
 .service p { font-size: .93rem; color: var(--text-2); }
@@ -453,6 +453,20 @@ footer ul a:hover { color: var(--lime); }
 .bot-input input:focus { outline: none; border-color: var(--blue); }
 .bot-input button { width: 44px; border-radius: 12px; border: 0; background: var(--grad); color: var(--on-grad); display: grid; place-items: center; }
 .bot-input button svg { width: 18px; height: 18px; }
+
+/* ---------- Fare ışığı ---------- */
+:root { --glow-a: rgba(140, 198, 63, .22); --glow-b: rgba(58, 160, 220, .12); --spot: rgba(47, 138, 61, .11); --spot-line: rgba(47, 138, 61, .35); }
+[data-theme="dark"] { --glow-a: rgba(159, 209, 74, .14); --glow-b: rgba(58, 160, 220, .1); --spot: rgba(159, 209, 74, .12); --spot-line: rgba(159, 209, 74, .4); }
+.cursor-light {
+  position: fixed; left: -350px; top: -350px; width: 700px; height: 700px; border-radius: 50%;
+  pointer-events: none; z-index: 900; opacity: 0; transition: opacity .5s;
+  background: radial-gradient(circle, var(--glow-a) 0%, var(--glow-b) 35%, transparent 68%);
+  will-change: transform;
+}
+.cursor-light.on { opacity: 1; }
+[data-theme="dark"] .cursor-light { mix-blend-mode: screen; }
+.spot { background-image: radial-gradient(420px circle at var(--x, -999px) var(--y, -999px), var(--spot), transparent 45%); }
+.product.spot:hover, .c-list a.spot:hover { border-color: var(--spot-line); }
 
 /* Kaydırınca belirme */
 .js .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; transition-delay: var(--d, 0s); }
