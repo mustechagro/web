@@ -60,6 +60,7 @@
   function Field(canvas, mode) {
     this.c = canvas; this.ctx = canvas.getContext('2d');
     this.mode = mode; this.visible = true; this.t0 = rnd(0, 100);
+    this.fx = canvas.hasAttribute('data-fx'); // video üstünde: sadece yıldız / ateş böceği / polen
     this.build();
   }
 
@@ -81,6 +82,7 @@
       P = this.P = { stems: [deep, deep], heads: [deep, deep], awns: [deep, deep], band: true };
     }
 
+    if (this.fx) layers = [];
     this.layers = layers.map(function (cfg, i) {
       var li = this.mode === 'hero' ? i : i;
       var count = Math.round(W / cfg.d * (small ? 0.75 : 1));
@@ -103,8 +105,9 @@
     this.dust = [];
     this.stars = [];
     if (this.mode === 'hero') {
-      for (var d = 0; d < (small ? 18 : 36); d++) this.dust.push({ x: rnd(0, W), y: rnd(H * 0.35, H), r: rnd(0.8, 2.4), v: rnd(0.2, 0.7), ph: rnd(0, 6.28) });
-      if (P.stars) for (var s = 0; s < (small ? 40 : 90); s++) this.stars.push({ x: rnd(0, W), y: rnd(0, H * 0.55), r: rnd(0.4, 1.4), ph: rnd(0, 6.28) });
+      var nd = this.fx ? (P.stars ? (small ? 14 : 26) : (small ? 8 : 16)) : (small ? 18 : 36);
+      for (var d = 0; d < nd; d++) this.dust.push({ x: rnd(0, W), y: rnd(H * 0.35, H), r: rnd(0.8, 2.4), v: rnd(0.2, 0.7), ph: rnd(0, 6.28) });
+      if (P.stars) for (var s = 0; s < (small ? 40 : 90); s++) this.stars.push({ x: rnd(0, W), y: rnd(0, H * (this.fx ? 0.24 : 0.55)), r: rnd(0.4, 1.4), ph: rnd(0, 6.28) });
     }
   };
 
@@ -124,6 +127,7 @@
 
     if (this.mode === 'hero') {
       var base = Math.min(H, 820);
+      var fx = this.fx;
       // yıldızlar
       for (var s = 0; s < this.stars.length; s++) {
         var st = this.stars[s];
@@ -132,7 +136,8 @@
         ctx.beginPath(); ctx.arc(st.x, st.y, st.r, 0, 6.283); ctx.fill();
       }
       ctx.globalAlpha = 1;
-      // uzak tepeler
+      // uzak tepeler (video arka planında çizilmez)
+      if (!fx) {
       ctx.fillStyle = P.hills[0];
       ctx.beginPath(); ctx.moveTo(0, H);
       ctx.lineTo(0, H - base * 0.34);
@@ -144,6 +149,7 @@
       ctx.lineTo(0, H - base * 0.24);
       ctx.bezierCurveTo(W * 0.3, H - base * 0.3, W * 0.6, H - base * 0.2, W, H - base * 0.28);
       ctx.lineTo(W, H); ctx.fill();
+      }
     }
 
     var groundY = H + 4;
@@ -180,7 +186,7 @@
           u.x += (u.v + this.wind(u.x, t) * 0.6); u.y += Math.sin(t * 1.4 + u.ph) * 0.25;
           if (u.x > W + 10) { u.x = -10; u.y = rnd(H * 0.35, H); }
         }
-        var al = P.stars ? 0.35 + 0.5 * Math.abs(Math.sin(t * 1.7 + u.ph)) : 0.55;
+        var al = P.stars ? 0.35 + 0.5 * Math.abs(Math.sin(t * 1.7 + u.ph)) : (this.fx ? 0.35 : 0.55);
         ctx.fillStyle = P.dust + al + ')';
         ctx.beginPath(); ctx.arc(u.x, u.y, u.r, 0, 6.283); ctx.fill();
         if (P.stars) { ctx.fillStyle = P.dust + (al * 0.18) + ')'; ctx.beginPath(); ctx.arc(u.x, u.y, u.r * 4, 0, 6.283); ctx.fill(); }

@@ -145,6 +145,28 @@
     }, 2600);
   }
 
+  /* ================= GİRİŞ VİDEOSU ================= */
+  // Ekran genişliğine göre HD (1080p) ya da hafif (720p) sürüm yüklenir.
+  // Veri tasarrufu modunda veya "hareketi azalt" ayarında video yerine kapak görseli kalır.
+  var hv = document.getElementById('heroVideo');
+  if (hv) {
+    var conn = navigator.connection || {};
+    var lite = conn.saveData || /2g/.test(conn.effectiveType || '');
+    if (!reduceMotion && !lite) {
+      var big = window.innerWidth >= 1024 && window.innerWidth * (window.devicePixelRatio || 1) > 1300;
+      hv.src = hv.getAttribute(big ? 'data-hd' : 'data-sd');
+      hv.addEventListener('playing', function () { hv.classList.add('ready'); });
+      var tryPlay = function () { var pr = hv.play(); if (pr && pr.catch) pr.catch(function () {}); };
+      tryPlay();
+      // Ekranda değilken durdur (pil ve işlemci için)
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) {
+          if (es[0].isIntersecting) tryPlay(); else hv.pause();
+        }, { threshold: 0.05 }).observe(hv);
+      }
+    }
+  }
+
   /* ================= İLETİŞİM FORMU ================= */
   var topic = document.getElementById('f-topic');
   document.querySelectorAll('[data-product]').forEach(function (a) {
